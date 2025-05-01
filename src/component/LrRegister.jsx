@@ -46,7 +46,7 @@ const LrRegister = () => {
 
   return (
     <TableLayout
-      title="@Sort (L.R.)"
+      title="Sort (L.R.)"
       columns={columns}
       initialData={initialData}
       numericFields={numericFields}

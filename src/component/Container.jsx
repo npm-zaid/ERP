@@ -33,6 +33,24 @@ import ListOfTruck from './Navbar/ListOfTruck'
 import ListOfTruckDriver from './Navbar/ListOfTruckDriver'
 import ListOfTruckOwner from './Navbar/ListOfTruckOwner'
 
+
+// sea components 
+import ProofOfDelivery from '../Sea-Components/ProofOfDelivery'
+import GoodsReceived from '../Sea-Components/GoodsReceived'
+import ContainerInterchange from '../Sea-Components/ContainerInterchange'
+
+
+//reports
+import StockReport from '../Sea-Components/StockReport'
+import ClearanceReport from '../Sea-Components/ClearanceReport'
+import WarehouseProcessingReport from '../Sea-Components/WarehouseProcessingReport'
+import WarehouseStockReport from '../Sea-Components/WarehouseStockReport'
+import TrucksReport from '../Sea-Components/TrucksReport'
+import CommoditiesPlanReport from '../Sea-Components/CommoditiesPlanReport'
+import DeliveryPlanReport from '../Sea-Components/DeliveryPlanReport'
+import ContainerReturnReport from '../Sea-Components/ContainerReturnReport'
+import EntryPlanReport from '../Sea-Components/EntryPlanReport'
+
 const Container = ({isOpen, setIsOpen}) => {
   return (
     <div className='fle flex-col '>
@@ -71,7 +89,27 @@ const Container = ({isOpen, setIsOpen}) => {
         <Route path="/master/Place Master/District" element={<ListOfDistrict />} />            
         <Route path="/master/Truck Details/Truck Master" element={<ListOfTruck />} />            
         <Route path="/master/Truck Details/Truck Driver" element={<ListOfTruckDriver />} />            
-        <Route path="/master/Truck Details/Truck Owner" element={<ListOfTruckOwner />} />            
+        <Route path="/master/Truck Details/Truck Owner" element={<ListOfTruckOwner />} /> 
+
+        {/* reports */}
+        <Route path="/reports/Stock" element={<StockReport />} />  
+        <Route path="/reports/Clearance" element={<ClearanceReport />} /> 
+        <Route path="/reports/WH. Processing" element={<WarehouseProcessingReport />} />  
+        <Route path="/reports/Warehouse Stock" element={<WarehouseStockReport />} />  
+        <Route path="/reports/Trucks" element={<TrucksReport />} />  
+         
+        <Route path="/reports/Delivery Plan" element={<DeliveryPlanReport />} />  
+        <Route path="/reports/Commodities" element={<CommoditiesPlanReport />} />  
+        <Route path="/reports/Container Return" element={<ContainerReturnReport />} />  
+        <Route path="/reports/Entry Plan" element={<EntryPlanReport />} />  
+        
+
+        {/* sea components */}
+        <Route path="/proof-of-delivery" element={<ProofOfDelivery />} />  
+        <Route path="/goods-received" element={<GoodsReceived />} />  
+        <Route path="/container-interchange" element={<ContainerInterchange />} />  
+        
+        
         </Routes>
       
      

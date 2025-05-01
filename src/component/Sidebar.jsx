@@ -32,6 +32,46 @@ const Sidebar = ({isOpen, setIsOpen}) => {
       
       </NavLink>
 
+      <NavLink 
+        to="/proof-of-delivery"
+        onClick={() => setIsOpen(false)}
+        className={({isActive}) => 
+          `p-3 rounded-lg transition-all duration-300 flex items-center gap-3 group relative
+          ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
+        }
+      >
+         <i class="ri-secure-payment-fill"></i>
+        {isOpen && "Proof of Delivery"}
+      
+      </NavLink>
+
+      <NavLink 
+        to="/goods-received"
+        onClick={() => setIsOpen(false)}
+        className={({isActive}) => 
+          `p-3 rounded-lg transition-all duration-300 flex items-center gap-3 group relative
+          ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
+        }
+      >
+         <i className="ri-shopping-bag-line"></i>
+        {isOpen && "Goods Received"}
+      
+      </NavLink>
+
+      <NavLink 
+        to="/container-interchange"
+        onClick={() => setIsOpen(false)}
+        className={({isActive}) => 
+          `p-3 rounded-lg transition-all duration-300 flex items-center gap-3 group relative
+          ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
+        }
+      >
+         <i className="ri-archive-line"></i>
+        {isOpen && "Container Interchange"}
+      
+      </NavLink>
+
+
       <NavLink
         to="/list-of-lr"
         onClick={() => setIsOpen(false)}
@@ -147,7 +187,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
           ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
         }
       >
-        <i className="ri-shopping-bag-line"></i>
+        <i class="ri-file-list-3-line"></i>
         {isOpen && "Cash Receipt"}
 
       </NavLink>
@@ -173,7 +213,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
           ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
         }
       >
-        <i className="ri-user-line"></i>
+       <i class="ri-bank-line"></i>
         {isOpen && "Account Ledger"}
       
       </NavLink>
@@ -186,7 +226,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
           ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
         }
       >
-        <i className="ri-user-line"></i>
+       <i class="ri-pie-chart-2-line"></i>
         {isOpen && "Lr Register"}
        
       </NavLink>
@@ -199,7 +239,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
           ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
         }
       >
-        <i className="ri-settings-line"></i>
+        <i class="ri-store-2-fill"></i>
         {isOpen && "Godown Stock"}
        
       </NavLink>
@@ -212,7 +252,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
           ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
         }
       >
-        <i className="ri-settings-line"></i>
+        <i class="ri-fingerprint-fill"></i>
         {isOpen && "Payable Account"}
        
       </NavLink>
@@ -225,7 +265,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
           ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
         }
       >
-        <i className="ri-settings-line"></i>
+        <i class="ri-contacts-book-line"></i>
         {isOpen && "Receivable Account"}
        
       </NavLink>

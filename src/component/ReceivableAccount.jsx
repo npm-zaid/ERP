@@ -1,5 +1,5 @@
 import React from 'react';
-import TableLayout2 from './TableLayout2'; // Assuming TableLayout2 is in the same directory
+import TableLayout from './TableLayout'; // Assuming TableLayout is in the same directory
 
 const ReceivableAccount = () => {
   // Define columns for the Receivable Account table, adding State, Follow-up Date, and Phone
@@ -37,7 +37,7 @@ const ReceivableAccount = () => {
 
   return (
     <div className="w-full">
-      <TableLayout2
+      <TableLayout
         title="Receivable Account"
         columns={columns}
         initialData={initialData}

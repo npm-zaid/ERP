@@ -69,7 +69,7 @@ const GodownStockComponent = () => {
   return (
     <div className="w-full min-h-screen">
       <TableLayout
-        title="@Detail Godown Stock"
+        title="Detail Godown Stock"
         columns={columns}
         initialData={filteredData}
         numericFields={numericFields}

@@ -41,16 +41,16 @@ const Navbar = () => {
     {
       name: 'Reports',
       options: [
-        { name: 'Overview', subOptions: null }, // No sub-options
-        { name: 'Financial', subOptions: ['Balance Sheet', 'P&L', 'Cash Flow'] },
-        { name: 'Sales', subOptions: ['Daily', 'Monthly', 'Yearly'] },
-        { name: 'Inventory', subOptions: ['Stock', 'Turnover', 'Valuation'] },
-        { name: 'Customer', subOptions: ['Activity', 'Retention', 'Satisfaction'] },
-        { name: 'Employee', subOptions: ['Performance', 'Attendance', 'Payroll'] },
-        { name: 'Project', subOptions: ['Progress', 'Budget', 'Timeline'] },
-        { name: 'Compliance', subOptions: ['Tax', 'Audit', 'Regulatory'] },
-        { name: 'Analytics', subOptions: ['Trends', 'Forecasts', 'Insights'] },
-        { name: 'Export', subOptions: ['PDF', 'Excel', 'CSV'] },
+        { name: 'Stock', subOptions:null }, // No sub-options
+        { name: 'Clearance', subOptions:null },
+        { name: 'WH. Processing', subOptions:null },
+        { name: 'Warehouse Stock', subOptions:null },
+        { name: 'Delivery Plan', subOptions:null },
+        { name: 'Entry Plan', subOptions:null },
+        { name: 'Container Return', subOptions:null },
+        { name: 'Trucks', subOptions:null },
+        { name: 'Commodities', subOptions:null },
+       
       ],
     },
     {

@@ -1,5 +1,5 @@
 import React from 'react';
-import TableLayout2 from './TableLayout2'; // Assuming TableLayout2 is in the same directory
+import TableLayout from './TableLayout'; // Assuming TableLayout is in the same directory
 
 const PayableAccount = () => {
   // Define columns for the Payable Master table
@@ -31,7 +31,7 @@ const PayableAccount = () => {
 
   return (
     <div className="w-full">
-      <TableLayout2
+      <TableLayout
         title="Payable Master"
         columns={columns}
         initialData={initialData}

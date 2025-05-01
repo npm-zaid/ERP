@@ -449,766 +449,704 @@ const TableLayout = ({
     switch (componentType) {
       case 'lr':
         return (
-          <div className="space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-              <div>
-                <label className="block text-gray-700 font-medium">Date</label>
-                {renderInputField('date', newEntry.date, { type: 'date' })}
+          <div className="min-h-screen text-[14px]  bg-gray-50 flex justify-center items-center   ">
+          <div className="w-full  space-y-8 ">
+            {/* General Information */}
+            <div className="space-y-6">
+              <h2 className="text-lg font-bold text-gray-800">General Information</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">
+                {[
+                  { label: 'Date', field: 'date', type: 'date' },
+                  { label: 'LR No', field: 'lrNo', type: 'text', placeholder: 'Auto-generated' },
+                  {
+                    label: 'Center',
+                    field: 'center',
+                    type: 'dropdown',
+                    options: fieldConfig.center?.options || [],
+                  },
+                  {
+                    label: 'Type',
+                    field: 'type',
+                    type: 'dropdown',
+                    options: fieldConfig.type?.options || [],
+                  },
+                ].map(({ label, field, type, options, placeholder }) => (
+                  <div key={field}>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+                    {renderInputField(field, newEntry[field], { type, options, placeholder })}
+                  </div>
+                ))}
               </div>
-              <div>
-                <label className="block text-gray-700 font-medium">LR No</label>
-                {renderInputField('lrNo', newEntry.lrNo, { type: 'text', placeholder: 'Auto-generated' })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Center</label>
-                {renderInputField('center', newEntry.center, {
-                  type: 'dropdown',
-                  options: fieldConfig.center?.options || [],
-                })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Type</label>
-                {renderInputField('type', newEntry.type, {
-                  type: 'dropdown',
-                  options: fieldConfig.type?.options || [],
-                })}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-              <div>
-                <label className="block text-gray-700 font-medium">Freight By</label>
-                {renderInputField('freightBy', newEntry.freightBy, {
-                  type: 'dropdown',
-                  options: fieldConfig.freightBy?.options || [],
-                })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Delivery</label>
-                {renderInputField('delivery', newEntry.delivery, {
-                  type: 'dropdown',
-                  options: fieldConfig.delivery?.options || [],
-                })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Invoice No</label>
-                {renderInputField('invNo', newEntry.invNo, { type: 'text' })}
-              </div>
-            </div>
-
-            <div className="border-t border-gray-200 pt-4">
-              <h4 className="text-lg font-semibold text-gray-800 mb-2">Consignee Details</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div>
-                  <label className="block text-gray-700 font-medium">From City</label>
-                  <select
-                    value={newEntry.consignee?.fromCity || ''}
-                    onChange={(e) => handleNestedInputChange('consignee', 'fromCity', e.target.value)}
-                    className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  >
-                    {fieldConfig.fromCity?.options.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-gray-700 font-medium">To City</label>
-                  <select
-                    value={newEntry.consignee?.toCity || ''}
-                    onChange={(e) => handleNestedInputChange('consignee', 'toCity', e.target.value)}
-                    className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  >
-                    {fieldConfig.toCity?.options.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-gray-700 font-medium">GST No</label>
-                  <input
-                    type="text"
-                    value={newEntry.consignee?.gstno || ''}
-                    onChange={(e) => handleNestedInputChange('consignee', 'gstno', e.target.value)}
-                    className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-700 font-medium">Name</label>
-                  <input
-                    type="text"
-                    value={newEntry.consignee?.name || ''}
-                    onChange={(e) => handleNestedInputChange('consignee', 'name', e.target.value)}
-                    className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-700 font-medium">Mobile</label>
-                  <input
-                    type="text"
-                    value={newEntry.consignee?.mobile || ''}
-                    onChange={(e) => handleNestedInputChange('consignee', 'mobile', e.target.value)}
-                    className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-700 font-medium">Address</label>
-                  <input
-                    type="text"
-                    value={newEntry.consignee?.address || ''}
-                    onChange={(e) => handleNestedInputChange('consignee', 'address', e.target.value)}
-                    className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  />
-                </div>
+    
+              <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">
+                {[
+                  {
+                    label: 'Freight By',
+                    field: 'freightBy',
+                    type: 'dropdown',
+                    options: fieldConfig.freightBy?.options || [],
+                  },
+                  {
+                    label: 'Delivery',
+                    field: 'delivery',
+                    type: 'dropdown',
+                    options: fieldConfig.delivery?.options || [],
+                  },
+                  { label: 'Invoice No', field: 'invNo', type: 'text' },
+                ].map(({ label, field, type, options }) => (
+                  <div key={field}>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+                    {renderInputField(field, newEntry[field], { type, options })}
+                  </div>
+                ))}
               </div>
             </div>
-
-            <div className="border-t border-gray-200 pt-4">
-              <h4 className="text-lg font-semibold text-gray-800 mb-2">Bill Account Details</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div>
-                  <label className="block text-gray-700 font-medium">GST No</label>
-                  <input
-                    type="text"
-                    value={newEntry.billAccount?.gstno || ''}
-                    onChange={(e) => handleNestedInputChange('billAccount', 'gstno', e.target.value)}
-                    className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-700 font-medium">Name</label>
-                  <input
-                    type="text"
-                    value={newEntry.billAccount?.name || ''}
-                    onChange={(e) => handleNestedInputChange('billAccount', 'name', e.target.value)}
-                    className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-700 font-medium">Mobile</label>
-                  <input
-                    type="text"
-                    value={newEntry.billAccount?.mobile || ''}
-                    onChange={(e) => handleNestedInputChange('billAccount', 'mobile', e.target.value)}
-                    className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-700 font-medium">Address</label>
-                  <input
-                    type="text"
-                    value={newEntry.billAccount?.address || ''}
-                    onChange={(e) => handleNestedInputChange('billAccount', 'address', e.target.value)}
-                    className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  />
-                </div>
+    
+            {/* Consignee Details */}
+            <div className="border-t border-gray-200 pt-6 space-y-6">
+              <h2 className="text-lg font-bold text-gray-800">Consignee Details</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                {[
+                  { label: 'From City', field: 'fromCity', options: fieldConfig.fromCity?.options || [] },
+                  { label: 'To City', field: 'toCity', options: fieldConfig.toCity?.options || [] },
+                  { label: 'GST No', field: 'gstno', type: 'text' },
+                  { label: 'Name', field: 'name', type: 'text' },
+                  { label: 'Mobile', field: 'mobile', type: 'text' },
+                  { label: 'Address', field: 'address', type: 'text' },
+                ].map(({ label, field, type, options }) => (
+                  <div key={field}>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+                    {type === 'text' ? (
+                      <input
+                        type="text"
+                        value={newEntry.consignee?.[field] || ''}
+                        onChange={(e) => handleNestedInputChange('consignee', field, e.target.value)}
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                      />
+                    ) : (
+                      <select
+                        value={newEntry.consignee?.[field] || ''}
+                        onChange={(e) => handleNestedInputChange('consignee', field, e.target.value)}
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                      >
+                        <option value="">Select {label}</option>
+                        {options.map((option) => (
+                          <option key={option} value={option}>
+                            {option}
+                          </option>
+                        ))}
+                      </select>
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
-
-            <div className="border-t border-gray-200 pt-4">
-              <h4 className="text-lg font-semibold text-gray-800 mb-2">Items</h4>
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr className="bg-gray-100">
-                    <th className="p-2 text-left text-gray-700 font-medium">Article</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">Packaging</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">Goods Contained</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">Actual Weight</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">Weight</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">Rate</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">Freight On</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">Amount</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {(newEntry.items || []).map((item, index) => (
-                    <tr key={index}>
-                      <td className="p-2">
-                        <input
-                          type="number"
-                          value={item.article}
-                          onChange={(e) => handleItemChange(index, 'article', e.target.value)}
-                          className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        />
-                      </td>
-                      <td className="p-2">
-                        <input
-                          type="text"
-                          value={item.packaging}
-                          onChange={(e) => handleItemChange(index, 'packaging', e.target.value)}
-                          className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        />
-                      </td>
-                      <td className="p-2">
-                        <input
-                          type="text"
-                          value={item.goodsContained}
-                          onChange={(e) => handleItemChange(index, 'goodsContained', e.target.value)}
-                          className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        />
-                      </td>
-                      <td className="p-2">
-                        <input
-                          type="number"
-                          value={item.actualWeight}
-                          onChange={(e) => handleItemChange(index, 'actualWeight', e.target.value)}
-                          className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        />
-                      </td>
-                      <td className="p-2">
-                        <input
-                          type="number"
-                          value={item.weight}
-                          onChange={(e) => handleItemChange(index, 'weight', e.target.value)}
-                          className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        />
-                      </td>
-                      <td className="p-2">
-                        <input
-                          type="number"
-                          value={item.rate}
-                          onChange={(e) => handleItemChange(index, 'rate', e.target.value)}
-                          className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        />
-                      </td>
-                      <td className="p-2">
-                        <input
-                          type="text"
-                          value={item.freightOn}
-                          onChange={(e) => handleItemChange(index, 'freightOn', e.target.value)}
-                          className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        />
-                      </td>
-                      <td className="p-2">
-                        <input
-                          type="number"
-                          value={item.amount}
-                          onChange={(e) => handleItemChange(index, 'amount', e.target.value)}
-                          className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        />
-                      </td>
-                      <td className="p-2">
-                        <button
-                          onClick={() => removeItemRow(index)}
-                          className="p-1 bg-red-500 text-white rounded hover:bg-red-600"
+    
+            {/* Bill Account Details */}
+            <div className="border-t border-gray-200 pt-6 space-y-6">
+              <h2 className="text-lg font-bold text-gray-800">Bill Account Details</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                {[
+                  { label: 'GST No', field: 'gstno' },
+                  { label: 'Name', field: 'name' },
+                  { label: 'Mobile', field: 'mobile' },
+                  { label: 'Address', field: 'address' },
+                ].map(({ label, field }) => (
+                  <div key={field}>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+                    <input
+                      type="text"
+                      value={newEntry.billAccount?.[field] || ''}
+                      onChange={(e) => handleNestedInputChange('billAccount', field, e.target.value)}
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+    
+            {/* Items Table */}
+            <div className="border-t border-gray-200 pt-6 space-y-6">
+              <h2 className="text-lg font-bold text-gray-800">Items</h2>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse">
+                  <thead>
+                    <tr className="bg-gray-100">
+                      {[
+                        'Article',
+                        'Packaging',
+                        'Goods Contained',
+                        'Actual Weight',
+                        'Weight',
+                        'Rate',
+                        'Freight On',
+                        'Amount',
+                        'Actions',
+                      ].map((header) => (
+                        <th
+                          key={header}
+                          className="p-4 text-left text-sm font-medium text-gray-700 border-b border-gray-200"
                         >
-                          <i className="ri-delete-bin-line"></i>
-                        </button>
-                      </td>
+                          {header}
+                        </th>
+                      ))}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {(newEntry.items || []).map((item, index) => (
+                      <tr key={index} className="hover:bg-gray-50">
+                        {[
+                          'article',
+                          'packaging',
+                          'goodsContained',
+                          'actualWeight',
+                          'weight',
+                          'rate',
+                          'freightOn',
+                          'amount',
+                        ].map((field) => (
+                          <td key={field} className="p-4 border-b border-gray-200">
+                            <input
+                              type={field.includes('Weight') || field === 'article' || field === 'rate' || field === 'amount' ? 'number' : 'text'}
+                              value={item[field]}
+                              onChange={(e) => handleItemChange(index, field, e.target.value)}
+                              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                            />
+                          </td>
+                        ))}
+                        <td className="p-4 border-b border-gray-200">
+                          <button
+                            onClick={() => removeItemRow(index)}
+                            className="p-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
+                          >
+                            <i className="ri-delete-bin-line"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
               <button
                 onClick={addItemRow}
-                className="mt-2 p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
               >
                 Add Item
               </button>
             </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-              <div>
-                <label className="block text-gray-700 font-medium">Value Rs</label>
-                {renderInputField('valueRs', newEntry.valueRs, { type: 'number' })}
+    
+            {/* Additional Fields */}
+            <div className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">
+                {[
+                  { label: 'Value Rs', field: 'valueRs', type: 'number' },
+                  { label: 'Previous Freight', field: 'previousFreight', type: 'number' },
+                  { label: 'Freight', field: 'freight', type: 'number' },
+                  {
+                    label: 'Narration',
+                    field: 'narration',
+                    type: 'textarea',
+                    placeholder: 'Enter narration',
+                  },
+                ].map(({ label, field, type, placeholder }) => (
+                  <div key={field}>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+                    {renderInputField(field, newEntry[field], { type, placeholder })}
+                  </div>
+                ))}
               </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Previous Freight</label>
-                {renderInputField('previousFreight', newEntry.previousFreight, { type: 'number' })}
+    
+              <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">
+                {[
+                  { label: 'Crossing', field: 'crossing', type: 'number' },
+                  { label: 'Docket Charge', field: 'docketCharge', type: 'number' },
+                  { label: 'Hamali', field: 'hamali', type: 'number' },
+                  { label: 'Detention', field: 'detention', type: 'number' },
+                ].map(({ label, field, type }) => (
+                  <div key={field}>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+                    {renderInputField(field, newEntry[field], { type })}
+                  </div>
+                ))}
               </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Freight</label>
-                {renderInputField('freight', newEntry.freight, { type: 'number' })}
+    
+              <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">
+                {[
+                  { label: 'Door Collection', field: 'doorCollection', type: 'number' },
+                  { label: 'Door Delivery', field: 'doorDelivery', type: 'number' },
+                  { label: 'Booking ID', field: 'bookingId', type: 'text' },
+                  { label: 'Memo No', field: 'memoNo', type: 'text' },
+                ].map(({ label, field, type }) => (
+                  <div key={field}>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+                    {renderInputField(field, newEntry[field], { type })}
+                  </div>
+                ))}
               </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Narration</label>
-                {renderInputField('narration', newEntry.narration, { type: 'textarea', placeholder: 'Enter narration' })}
+    
+              <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">
+                {[
+                  { label: 'Delivery No', field: 'deliveryNo', type: 'text' },
+                  { label: 'Bill No', field: 'billNo', type: 'text' },
+                  { label: 'Sub Total', field: 'subTotal', type: 'number', readOnly: true },
+                  { label: 'GST By', field: 'gstBy', type: 'text' },
+                ].map(({ label, field, type, readOnly }) => (
+                  <div key={field}>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+                    {readOnly ? (
+                      <input
+                        type="number"
+                        value={newEntry[field] || 0}
+                        readOnly
+                        className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100"
+                      />
+                    ) : (
+                      renderInputField(field, newEntry[field], { type })
+                    )}
+                  </div>
+                ))}
               </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-              <div>
-                <label className="block text-gray-700 font-medium">Crossing</label>
-                {renderInputField('crossing', newEntry.crossing, { type: 'number' })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Docket Charge</label>
-                {renderInputField('docketCharge', newEntry.docketCharge, { type: 'number' })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Hamali</label>
-                {renderInputField('hamali', newEntry.hamali, { type: 'number' })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Detention</label>
-                {renderInputField('detention', newEntry.detention, { type: 'number' })}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-              <div>
-                <label className="block text-gray-700 font-medium">Door Collection</label>
-                {renderInputField('doorCollection', newEntry.doorCollection, { type: 'number' })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Door Delivery</label>
-                {renderInputField('doorDelivery', newEntry.doorDelivery, { type: 'number' })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Booking ID</label>
-                {renderInputField('bookingId', newEntry.bookingId, { type: 'text' })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Memo No</label>
-                {renderInputField('memoNo', newEntry.memoNo, { type: 'text' })}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-              <div>
-                <label className="block text-gray-700 font-medium">Delivery No</label>
-                {renderInputField('deliveryNo', newEntry.deliveryNo, { type: 'text' })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Bill No</label>
-                {renderInputField('billNo', newEntry.billNo, { type: 'text' })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Sub Total</label>
-                <input
-                  type="number"
-                  value={newEntry.subTotal || 0}
-                  readOnly
-                  className="w-full p-2 border border-gray-300 rounded bg-gray-100"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">GST By</label>
-                {renderInputField('gstBy', newEntry.gstBy, { type: 'text' })}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div>
-                <label className="block text-gray-700 font-medium">GST Rate</label>
-                {renderInputField('gstRate', newEntry.gstRate, { type: 'text' })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">GST Amount</label>
-                <input
-                  type="number"
-                  value={newEntry.gstAmt || 0}
-                  readOnly
-                  className="w-full p-2 border border-gray-300 rounded bg-gray-100"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Total Freight</label>
-                <input
-                  type="number"
-                  value={newEntry.totalFreight || 0}
-                  readOnly
-                  className="w-full p-2 border border-gray-300 rounded bg-gray-100"
-                />
+    
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                {[
+                  { label: 'GST Rate', field: 'gstRate', type: 'text' },
+                  { label: 'GST Amount', field: 'gstAmt', type: 'number', readOnly: true },
+                  { label: 'Total Freight', field: 'totalFreight', type: 'number', readOnly: true },
+                ].map(({ label, field, type, readOnly }) => (
+                  <div key={field}>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+                    {readOnly ? (
+                      <input
+                        type="number"
+                        value={newEntry[field] || 0}
+                        readOnly
+                        className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100"
+                      />
+                    ) : (
+                      renderInputField(field, newEntry[field], { type })
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
+        </div>
         );
       case 'memo':
         return (
-          <div className="space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-6 gap-4">
-              <div>
-                <label className="block text-gray-700 font-medium">Date</label>
-                {renderInputField('date', newEntry.date, { type: 'date' })}
+          <div className="min-h-screen text-[14px] bg-gray-50 flex justify-center items-center ">
+      <div className="w-full   space-y-8">
+        {/* General Information */}
+        <div className="space-y-6">
+          <h2 className="text-lg font-bold text-gray-800">Memo Information</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-6 gap-6">
+            {[
+              { label: 'Date', field: 'date', type: 'date' },
+              { label: 'Memo No', field: 'memoNo', type: 'text', placeholder: 'Auto-generated' },
+              {
+                label: 'To Branch',
+                field: 'toBranch',
+                type: 'dropdown',
+                options: fieldConfig.toBranch?.options || [],
+              },
+              {
+                label: 'Vehicle',
+                field: 'vehicle',
+                type: 'dropdown',
+                options: fieldConfig.vehicle?.options || [],
+              },
+              {
+                label: 'Driver',
+                field: 'driver',
+                type: 'dropdown',
+                options: fieldConfig.driver?.options || [],
+              },
+              { label: 'K. Miter', field: 'kMiter', type: 'text' },
+            ].map(({ label, field, type, options, placeholder }) => (
+              <div key={field}>
+                <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+                {renderInputField(field, newEntry[field] || '', { type, options, placeholder })}
               </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Memo No</label>
-                {renderInputField('memoNo', newEntry.memoNo, { type: 'text', placeholder: 'Auto-generated' })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">To Branch</label>
-                {renderInputField('toBranch', newEntry.toBranch, {
-                  type: 'dropdown',
-                  options: fieldConfig.toBranch?.options || [],
-                })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Vehicle</label>
-                {renderInputField('vehicle', newEntry.vehicle, {
-                  type: 'dropdown',
-                  options: fieldConfig.vehicle?.options || [],
-                })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Driver</label>
-                {renderInputField('driver', newEntry.driver, {
-                  type: 'dropdown',
-                  options: fieldConfig.driver?.options || [],
-                })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">K. Miter</label>
-                {renderInputField('kMiter', newEntry.kMiter || '', { type: 'text' })}
-              </div>
-            </div>
+            ))}
+          </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-6 gap-4">
-              <div>
-                <label className="block text-gray-700 font-medium">Agent</label>
-                {renderInputField('agent', newEntry.agent, {
-                  type: 'dropdown',
-                  options: fieldConfig.agent?.options || [],
-                })}
+          <div className="grid grid-cols-1 sm:grid-cols-6 gap-6">
+            {[
+              {
+                label: 'Agent',
+                field: 'agent',
+                type: 'dropdown',
+                options: fieldConfig.agent?.options || [],
+              },
+              {
+                label: 'Hire',
+                field: 'hire',
+                type: 'dropdown',
+                options: fieldConfig.hire?.options || [],
+              },
+              {
+                label: 'Cash/Bank',
+                field: 'cashBank',
+                type: 'dropdown',
+                options: fieldConfig.cashBank?.options || [],
+              },
+            ].map(({ label, field, type, options }) => (
+              <div key={field}>
+                <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+                {renderInputField(field, newEntry[field], { type, options })}
               </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Hire</label>
-                {renderInputField('hire', newEntry.hire, {
-                  type: 'dropdown',
-                  options: fieldConfig.hire?.options || [],
-                })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Cash/Bank</label>
-                {renderInputField('cashBank', newEntry.cashBank, {
-                  type: 'dropdown',
-                  options: fieldConfig.cashBank?.options || [],
-                })}
-              </div>
-              <div className="col-span-3 flex items-center space-x-2">
-                <button
-                  onClick={() => handleInputChange('addLr', !newEntry.addLr)}
-                  className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                >
-                  Add Lr
-                </button>
-                <button
-                  onClick={() => handleInputChange('autoAddLr', !newEntry.autoAddLr)}
-                  className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                >
-                  Auto Add Lr
-                </button>
-              </div>
-            </div>
-
-            <div className="border-t border-gray-200 pt-4">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr className="bg-gray-100">
-                    <th className="p-2 text-left text-gray-700 font-medium">Center Name</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">Lr No</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">Date</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">Packaging</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">Description</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">Article</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">FreightBy</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">From City</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td className="p-2">
-                      {renderInputField('center', newEntry.center, {
-                        type: 'dropdown',
-                        options: fieldConfig.center?.options || [],
-                      })}
-                    </td>
-                    <td className="p-2">
-                      {renderInputField('memoNo', newEntry.memoNo, { type: 'text' })}
-                    </td>
-                    <td className="p-2">
-                      {renderInputField('date', newEntry.date, { type: 'date' })}
-                    </td>
-                    <td className="p-2">
-                      {renderInputField('packaging', newEntry.packaging, {
-                        type: 'dropdown',
-                        options: fieldConfig.packaging?.options || [],
-                      })}
-                    </td>
-                    <td className="p-2">
-                      {renderInputField('description', newEntry.description, { type: 'text' })}
-                    </td>
-                    <td className="p-2">
-                      {renderInputField('article', newEntry.article, { type: 'number' })}
-                    </td>
-                    <td className="p-2">
-                      {renderInputField('freightBy', newEntry.freightBy, {
-                        type: 'dropdown',
-                        options: fieldConfig.freightBy?.options || [],
-                      })}
-                    </td>
-                    <td className="p-2">
-                      {renderInputField('fromCity', newEntry.fromCity, {
-                        type: 'dropdown',
-                        options: fieldConfig.fromCity?.options || [],
-                      })}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-5 gap-4">
-              <div>
-                <label className="block text-gray-700 font-medium">Total Lr :</label>
-                <input
-                  type="text"
-                  value={newEntry.totalLr || ''}
-                  readOnly
-                  className="w-full p-2 border border-gray-300 rounded bg-gray-100"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Total Article :</label>
-                <input
-                  type="text"
-                  value={newEntry.totalArticle || ''}
-                  readOnly
-                  className="w-full p-2 border border-gray-300 rounded bg-gray-100"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Total Ac. Weight :</label>
-                <input
-                  type="text"
-                  value={newEntry.totalAcWeight || ''}
-                  readOnly
-                  className="w-full p-2 border border-gray-300 rounded bg-gray-100"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Total Weight :</label>
-                <input
-                  type="text"
-                  value={newEntry.totalWeight || ''}
-                  readOnly
-                  className="w-full p-2 border border-gray-300 rounded bg-gray-100"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Freight By Article :</label>
-                <input
-                  type="text"
-                  value={newEntry.freightByArticle || ''}
-                  readOnly
-                  className="w-full p-2 border border-gray-300 rounded bg-gray-100"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div>
-                <label className="block text-gray-700 font-medium">To Pay :</label>
-                {renderInputField('toPay', newEntry.toPay, { type: 'number' })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Paid :</label>
-                {renderInputField('paid', newEntry.paid, { type: 'number' })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Balance :</label>
-                <input
-                  type="text"
-                  value={(parseFloat(newEntry.toPay || 0) - parseFloat(newEntry.paid || 0)).toFixed(2)}
-                  readOnly
-                  className="w-full p-2 border border-gray-300 rounded bg-gray-100"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-gray-700 font-medium">Consignee :</label>
-                {renderInputField('consignee', newEntry.consignee || '', { type: 'text' })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Consignor :</label>
-                {renderInputField('consignor', newEntry.consignor || '', { type: 'text' })}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-gray-700 font-medium">Narration :</label>
-                {renderInputField('narration', newEntry.narration, { type: 'textarea', placeholder: 'Enter narration' })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Memo Freight :</label>
-                {renderInputField('memoFreight', newEntry.memoFreight, { type: 'number' })}
-              </div>
+            ))}
+            <div className="col-span-3 flex items-center space-x-4">
+              <button
+                onClick={() => handleInputChange('addLr', !newEntry.addLr)}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+              >
+                Add Lr
+              </button>
+              <button
+                onClick={() => handleInputChange('autoAddLr', !newEntry.autoAddLr)}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+              >
+                Auto Add Lr
+              </button>
             </div>
           </div>
+        </div>
+
+        {/* Table Section */}
+        <div className="border-t border-gray-200 pt-6 space-y-6">
+          <h2 className="text-lg font-bold text-gray-800">Details</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr className="bg-gray-100">
+                  {[
+                    'Center Name',
+                    'Lr No',
+                    'Date',
+                    'Packaging',
+                    'Description',
+                    'Article',
+                    'FreightBy',
+                    'From City',
+                  ].map((header) => (
+                    <th
+                      key={header}
+                      className="p-4 text-left text-sm font-medium text-gray-700 border-b border-gray-200"
+                    >
+                      {header}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="hover:bg-gray-50">
+                  {[
+                    {
+                      field: 'center',
+                      type: 'dropdown',
+                      options: fieldConfig.center?.options || [],
+                    },
+                    { field: 'memoNo', type: 'text' },
+                    { field: 'date', type: 'date' },
+                    {
+                      field: 'packaging',
+                      type: 'dropdown',
+                      options: fieldConfig.packaging?.options || [],
+                    },
+                    { field: 'description', type: 'text' },
+                    { field: 'article', type: 'number' },
+                    {
+                      field: 'freightBy',
+                      type: 'dropdown',
+                      options: fieldConfig.freightBy?.options || [],
+                    },
+                    {
+                      field: 'fromCity',
+                      type: 'dropdown',
+                      options: fieldConfig.fromCity?.options || [],
+                    },
+                  ].map(({ field, type, options }, index) => (
+                    <td key={field} className="p-4 border-b border-gray-200">
+                      {renderInputField(field, newEntry[field] || '', { type, options })}
+                    </td>
+                  ))}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Totals Section */}
+        <div className="space-y-6">
+          <h2 className="text-lg font-bold text-gray-800">Summary</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-5 gap-6">
+            {[
+              { label: 'Total Lr', field: 'totalLr' },
+              { label: 'Total Article', field: 'totalArticle' },
+              { label: 'Total Ac. Weight', field: 'totalAcWeight' },
+              { label: 'Total Weight', field: 'totalWeight' },
+              { label: 'Freight By Article', field: 'freightByArticle' },
+            ].map(({ label, field }) => (
+              <div key={field}>
+                <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+                <input
+                  type="text"
+                  value={newEntry[field] || ''}
+                  readOnly
+                  className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100"
+                />
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {[
+              { label: 'To Pay', field: 'toPay', type: 'number' },
+              { label: 'Paid', field: 'paid', type: 'number' },
+              {
+                label: 'Balance',
+                field: 'balance',
+                type: 'text',
+                readOnly: true,
+                value: (parseFloat(newEntry.toPay || 0) - parseFloat(newEntry.paid || 0)).toFixed(2),
+              },
+            ].map(({ label, field, type, readOnly, value }) => (
+              <div key={field}>
+                <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+                {readOnly ? (
+                  <input
+                    type="text"
+                    value={value || ''}
+                    readOnly
+                    className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100"
+                  />
+                ) : (
+                  renderInputField(field, newEntry[field], { type })
+                )}
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {[
+              { label: 'Consignee', field: 'consignee', type: 'text' },
+              { label: 'Consignor', field: 'consignor', type: 'text' },
+            ].map(({ label, field, type }) => (
+              <div key={field}>
+                <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+                {renderInputField(field, newEntry[field] || '', { type })}
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {[
+              {
+                label: 'Narration',
+                field: 'narration',
+                type: 'textarea',
+                placeholder: 'Enter narration',
+              },
+              { label: 'Memo Freight', field: 'memoFreight', type: 'number' },
+            ].map(({ label, field, type, placeholder }) => (
+              <div key={field}>
+                <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+                {renderInputField(field, newEntry[field], { type, placeholder })}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
         );
       case 'memoreceive':
         return (
-          <div className="space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div>
-                <label className="block text-gray-700 font-medium">Date</label>
-                {renderInputField('date', newEntry.date, { type: 'date' })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Receive No</label>
-                {renderInputField('receiveNo', newEntry.receiveNo || '', { type: 'text', placeholder: 'Auto-generated' })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Memo</label>
-                {renderInputField('memo', newEntry.memo || '', { type: 'text' })}
+          <div className="min-h-screen text-[14px] bg-gray-50 flex justify-center items-center ">
+          <div className="w-full  bg-white space-y-8">
+            {/* General Information */}
+            <div className="space-y-6">
+              <h2 className="text-lg font-bold text-gray-800">Receive Information</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                {[
+                  { label: 'Date', field: 'date', type: 'date' },
+                  {
+                    label: 'Receive No',
+                    field: 'receiveNo',
+                    type: 'text',
+                    placeholder: 'Auto-generated',
+                  },
+                  { label: 'Memo', field: 'memo', type: 'text' },
+                ].map(({ label, field, type, placeholder }) => (
+                  <div key={field}>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+                    {renderInputField(field, newEntry[field] || '', { type, placeholder })}
+                  </div>
+                ))}
               </div>
             </div>
-
-            <div className="border-t border-gray-200 pt-4">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr className="bg-gray-100">
-                    <th className="p-2 text-left text-gray-700 font-medium">Center</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">Lr No</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">Lr Date</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">Bale No</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">From City</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">City</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">Consignor</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">Consignee</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">Article</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">Short Art</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">Weight</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">Freight</th>
-                    <th className="p-2 text-left text-gray-700 font-medium">Freight By</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {(newEntry.items || [
-                    {
-                      center: '',
-                      lrNo: '',
-                      lrDate: '',
-                      baleNo: '',
-                      fromCity: '',
-                      city: '',
-                      consignor: '',
-                      consignee: '',
-                      article: 0,
-                      shortArt: 0,
-                      weight: 0,
-                      freight: 0,
-                      freightBy: '',
-                    },
-                  ]).map((item, index) => (
-                    <tr key={index} className="border-b border-gray-200">
-                      <td className="p-2">
-                        {renderInputField(`items[${index}].center`, item.center, {
-                          type: 'dropdown',
-                          options: fieldConfig.center?.options || ['HEAD OFFICE', 'MUMBAI', 'DELHI'],
-                        })}
-                      </td>
-                      <td className="p-2">
-                        {renderInputField(`items[${index}].lrNo`, item.lrNo, { type: 'text' })}
-                      </td>
-                      <td className="p-2">
-                        {renderInputField(`items[${index}].lrDate`, item.lrDate, { type: 'date' })}
-                      </td>
-                      <td className="p-2">
-                        {renderInputField(`items[${index}].baleNo`, item.baleNo, { type: 'text' })}
-                      </td>
-                      <td className="p-2">
-                        {renderInputField(`items[${index}].fromCity`, item.fromCity, {
-                          type: 'dropdown',
-                          options: fieldConfig.fromCity?.options || ['MUMBAI', 'DELHI', 'PUNE'],
-                        })}
-                      </td>
-                      <td className="p-2">
-                        {renderInputField(`items[${index}].city`, item.city, {
-                          type: 'dropdown',
-                          options: fieldConfig.toCity?.options || ['AHMEDABAD', 'KOTA', 'JAIPUR'],
-                        })}
-                      </td>
-                      <td className="p-2">
-                        {renderInputField(`items[${index}].consignor`, item.consignor, { type: 'text' })}
-                      </td>
-                      <td className="p-2">
-                        {renderInputField(`items[${index}].consignee`, item.consignee, { type: 'text' })}
-                      </td>
-                      <td className="p-2">
-                        {renderInputField(`items[${index}].article`, item.article, { type: 'number' })}
-                      </td>
-                      <td className="p-2">
-                        {renderInputField(`items[${index}].shortArt`, item.shortArt, { type: 'number' })}
-                      </td>
-                      <td className="p-2">
-                        {renderInputField(`items[${index}].weight`, item.weight, { type: 'number' })}
-                      </td>
-                      <td className="p-2">
-                        {renderInputField(`items[${index}].freight`, item.freight, { type: 'number' })}
-                      </td>
-                      <td className="p-2">
-                        {renderInputField(`items[${index}].freightBy`, item.freightBy, {
-                          type: 'dropdown',
-                          options: fieldConfig.freightBy?.options || ['TBB'],
-                        })}
-                      </td>
+    
+            {/* Items Table */}
+            <div className="border-t border-gray-200 pt-6 space-y-6">
+              <h2 className="text-lg font-bold text-gray-800">Items</h2>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse">
+                  <thead>
+                    <tr className="bg-gray-100">
+                      {[
+                        'Center',
+                        'Lr No',
+                        'Lr Date',
+                        'Bale No',
+                        'From City',
+                        'City',
+                        'Consignor',
+                        'Consignee',
+                        'Article',
+                        'Short Art',
+                        'Weight',
+                        'Freight',
+                        'Freight By',
+                      ].map((header) => (
+                        <th
+                          key={header}
+                          className="p-4 text-left text-sm font-medium text-gray-700 border-b border-gray-200"
+                        >
+                          {header}
+                        </th>
+                      ))}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {(newEntry.items || [
+                      {
+                        center: '',
+                        lrNo: '',
+                        lrDate: '',
+                        baleNo: '',
+                        fromCity: '',
+                        city: '',
+                        consignor: '',
+                        consignee: '',
+                        article: 0,
+                        shortArt: 0,
+                        weight: 0,
+                        freight: 0,
+                        freightBy: '',
+                      },
+                    ]).map((item, index) => (
+                      <tr key={index} className="hover:bg-gray-50">
+                        {[
+                          {
+                            field: 'center',
+                            type: 'dropdown',
+                            options: fieldConfig.center?.options || ['HEAD OFFICE', 'MUMBAI', 'DELHI'],
+                          },
+                          { field: 'lrNo', type: 'text' },
+                          { field: 'lrDate', type: 'date' },
+                          { field: 'baleNo', type: 'text' },
+                          {
+                            field: 'fromCity',
+                            type: 'dropdown',
+                            options: fieldConfig.fromCity?.options || ['MUMBAI', 'DELHI', 'PUNE'],
+                          },
+                          {
+                            field: 'city',
+                            type: 'dropdown',
+                            options: fieldConfig.toCity?.options || ['AHMEDABAD', 'KOTA', 'JAIPUR'],
+                          },
+                          { field: 'consignor', type: 'text' },
+                          { field: 'consignee', type: 'text' },
+                          { field: 'article', type: 'number' },
+                          { field: 'shortArt', type: 'number' },
+                          { field: 'weight', type: 'number' },
+                          { field: 'freight', type: 'number' },
+                          {
+                            field: 'freightBy',
+                            type: 'dropdown',
+                            options: fieldConfig.freightBy?.options || ['TBB'],
+                          },
+                        ].map(({ field, type, options }) => (
+                          <td key={field} className="p-4 border-b border-gray-200">
+                            {renderInputField(`items[${index}].${field}`, item[field], { type, options })}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-gray-200 pt-4">
-              <div>
-                <label className="block text-gray-700 font-medium">Narration</label>
-                {renderInputField('narration', newEntry.narration || '', { type: 'textarea', placeholder: 'Enter narration' })}
+    
+            {/* Additional Fields */}
+            <div className="space-y-6">
+              <h2 className="text-lg font-bold text-gray-800">Summary</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 border-t border-gray-200 pt-6">
+                {[
+                  {
+                    label: 'Narration',
+                    field: 'narration',
+                    type: 'textarea',
+                    placeholder: 'Enter narration',
+                  },
+                  {
+                    label: 'Balance',
+                    field: 'balance',
+                    type: 'number',
+                    readOnly: true,
+                    value: (parseFloat(newEntry.toPay || 0) - parseFloat(newEntry.paid || 0)).toFixed(2),
+                  },
+                ].map(({ label, field, type, placeholder, readOnly, value }) => (
+                  <div key={field}>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+                    {readOnly ? (
+                      <input
+                        type="number"
+                        value={value || ''}
+                        readOnly
+                        className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100"
+                      />
+                    ) : (
+                      renderInputField(field, newEntry[field] || '', { type, placeholder })
+                    )}
+                  </div>
+                ))}
               </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Balance</label>
-                <input
-                  type="number"
-                  value={(parseFloat(newEntry.toPay || 0) - parseFloat(newEntry.paid || 0)).toFixed(2)}
-                  readOnly
-                  className="w-full p-2 border border-gray-300 rounded bg-gray-100"
-                />
+    
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                {[
+                  { label: 'To Pay', field: 'toPay', type: 'number' },
+                  { label: 'Paid', field: 'paid', type: 'number' },
+                  { label: 'Consignee', field: 'consignee', type: 'text' },
+                  { label: 'Consignor', field: 'consignor', type: 'text' },
+                ].map(({ label, field, type }) => (
+                  <div key={field}>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+                    {renderInputField(field, newEntry[field] || '', { type })}
+                  </div>
+                ))}
               </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div>
-                <label className="block text-gray-700 font-medium">To Pay</label>
-                {renderInputField('toPay', newEntry.toPay || 0, { type: 'number' })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Paid</label>
-                {renderInputField('paid', newEntry.paid || 0, { type: 'number' })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Consignee</label>
-                {renderInputField('consignee', newEntry.consignee || '', { type: 'text' })}
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Consignor</label>
-                {renderInputField('consignor', newEntry.consignor || '', { type: 'text' })}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
-              <div>
-                <label className="block text-gray-700 font-medium">Total Freight</label>
-                <input
-                  type="number"
-                  value={(newEntry.items || []).reduce((sum, item) => sum + (parseFloat(item.freight) || 0), 0)}
-                  readOnly
-                  className="w-full p-2 border border-gray-300 rounded bg-gray-100"
-                />
+    
+              <div className="grid grid-cols-1 gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Total Freight</label>
+                  <input
+                    type="number"
+                    value={(newEntry.items || []).reduce((sum, item) => sum + (parseFloat(item.freight) || 0), 0)}
+                    readOnly
+                    className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100"
+                  />
+                </div>
               </div>
             </div>
           </div>
+        </div>
         );
       case 'delivery':
           return(
-            <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg p-6 w-full max-w-4xl shadow-2xl max-h-[90vh] overflow-y-auto">
-              <h3 className="text-xl font-bold text-gray-800 mb-4">
+            <div className="min-h-screen text-[14px] bg-gray-50 flex justify-center items-center ">
+          <div className="w-full  bg-white space-y-8"> 
+              <h3 className="text-lg font-bold text-gray-800 mb-4">
                 {modal.type === 'add' ? 'Add Delivery of L.R.' : modal.type === 'edit' ? 'Edit Delivery of L.R.' : 'View Delivery of L.R.'}
               </h3>
               {modal.type === 'view' ? (
@@ -1533,17 +1471,10 @@ const TableLayout = ({
           )
       case 'fullload':
         return(
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-4xl shadow-2xl max-h-[90vh] overflow-y-auto relative">
-            <button
-              onClick={() => setModal({ isOpen: false, type: '', data: null })}
-              className="absolute top-2 left-2 p-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-            >
-              <i className="ri-close-line"></i>
-            </button>
-            <h3 className="text-xl font-bold text-gray-800 mb-4 text-center">
-              {modal.type === 'add' ? 'Add Full Load' : modal.type === 'edit' ? 'Edit Full Load' : 'View Full Load'}
-            </h3>
+          <div className="min-h-screen text-[14px] bg-gray-50 flex justify-center items-center ">
+          <div className="w-full  bg-white space-y-8">
+         
+           
             {modal.type === 'view' ? (
               <div className="space-y-3">
                 {columns
@@ -1833,62 +1764,16 @@ const TableLayout = ({
               </div>
             )}
 
-            <div className="flex justify-between mt-6">
-              <div className="flex gap-2">
-                <button
-                  onClick={() => alert('e-WayBill functionality not implemented')}
-                  className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                >
-                  e-WayBill
-                </button>
-                <button
-                  onClick={() => alert('Print functionality not implemented')}
-                  className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                >
-                  Print
-                </button>
-              </div>
-              <div className="flex gap-2">
-                {modal.type !== 'view' && (
-                  <>
-                    <button
-                      onClick={handleModalSubmit}
-                      className="p-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                    >
-                      Save (F3)
-                    </button>
-                    <button
-                      onClick={handleModalSaveAndClose}
-                      className="p-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                    >
-                      Save & Close (F4)
-                    </button>
-                  </>
-                )}
-                <button
-                  onClick={() => setModal({ isOpen: false, type: '', data: null })}
-                  className="p-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-                >
-                  Cancel (Esc)
-                </button>
-              </div>
-            </div>
+          
           </div>
         </div>
         )
         case 'salesInvoice':
         return(
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-4xl shadow-2xl max-h-[90vh] overflow-y-auto relative">
-            <button
-              onClick={() => setModal({ isOpen: false, type: '', data: null })}
-              className="absolute top-2 right-2 p-2 bg-red-500 text-white rounded-full hover:bg-red-600"
-            >
-              <i className="ri-close-line"></i>
-            </button>
-            <h3 className="text-xl font-bold text-gray-800 mb-4 text-center">
-              {modal.type === 'add' ? 'Add Sales Bill' : modal.type === 'edit' ? 'Edit Sales Bill' : 'View Sales Bill'}
-            </h3>
+          <div className="min-h-screen text-[14px] bg-gray-50 flex justify-center items-center ">
+          <div className="w-full  bg-white space-y-8">
+          
+           
             {modal.type === 'view' ? (
               <div className="space-y-3">
                 {columns
@@ -2146,57 +2031,16 @@ const TableLayout = ({
               </div>
             )}
 
-            <div className="flex justify-between mt-6">
-              <div className="flex gap-2">
-                <button
-                  onClick={() => alert('Print functionality not implemented')}
-                  className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                >
-                  Print
-                </button>
-              </div>
-              <div className="flex gap-2">
-                {modal.type !== 'view' && (
-                  <>
-                    <button
-                      onClick={handleModalSubmit}
-                      className="p-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                    >
-                      Save (F3)
-                    </button>
-                    <button
-                      onClick={handleModalSaveAndClose}
-                      className="p-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                    >
-                      Save & Close (F4)
-                    </button>
-                  </>
-                )}
-                <button
-                  onClick={() => setModal({ isOpen: false, type: '', data: null })}
-                  className="p-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-                >
-                  Cancel (Esc)
-                </button>
-              </div>
-            </div>
+            
           </div>
         </div>
         )   
 
         case 'transpoterbill':
           return(
-            <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg p-6 w-full max-w-4xl shadow-2xl max-h-[90vh] overflow-y-auto relative">
-              <button
-                onClick={() => setModal({ isOpen: false, type: '', data: null })}
-                className="absolute top-2 right-2 p-2 bg-red-500 text-white rounded-full hover:bg-red-600"
-              >
-                <i className="ri-close-line"></i>
-              </button>
-              <h3 className="text-xl font-bold text-gray-800 mb-4 text-center">
-                {modal.type === 'add' ? 'Add Trans Bill' : modal.type === 'edit' ? 'Edit Trans Bill' : 'View Trans Bill'}
-              </h3>
+            <div className="min-h-screen text-[14px] bg-gray-50 flex justify-center items-center ">
+          <div className="w-full  bg-white space-y-8">
+            
               {modal.type === 'view' ? (
                 <div className="space-y-3">
                   {columns
@@ -2455,57 +2299,16 @@ const TableLayout = ({
                 </div>
               )}
   
-              <div className="flex justify-between mt-6">
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => alert('Print functionality not implemented')}
-                    className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                  >
-                    Print
-                  </button>
-                </div>
-                <div className="flex gap-2">
-                  {modal.type !== 'view' && (
-                    <>
-                      <button
-                        onClick={handleModalSubmit}
-                        className="p-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                      >
-                        Save (F3)
-                      </button>
-                      <button
-                        onClick={handleModalSaveAndClose}
-                        className="p-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                      >
-                        Save & Close (F4)
-                      </button>
-                    </>
-                  )}
-                  <button
-                    onClick={() => setModal({ isOpen: false, type: '', data: null })}
-                    className="p-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-                  >
-                    Cancel (Esc)
-                  </button>
-                </div>
-              </div>
+            
             </div>
           </div>
           )
 
           case 'cashPayment':
             return(
-              <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-3xl shadow-2xl max-h-[90vh] overflow-y-auto relative">
-            <button
-              onClick={() => setModal({ isOpen: false, type: '', data: null })}
-              className="absolute top-2 right-2 p-2 bg-red-500 text-white rounded-full hover:bg-red-600"
-            >
-              <i className="ri-close-line"></i>
-            </button>
-            <h3 className="text-xl font-bold text-gray-800 mb-4 text-center">
-              {modal.type === 'add' ? 'Add Cash Payment' : modal.type === 'edit' ? 'Edit Cash Payment' : 'View Cash Payment'}
-            </h3>
+              <div className="min-h-screen text-[14px] bg-gray-50 flex justify-center items-center ">
+          <div className="w-full  bg-white space-y-8">
+           
             {modal.type === 'view' ? (
               <div className="space-y-3">
                 {columns
@@ -2676,58 +2479,29 @@ const TableLayout = ({
               </div>
             )}
 
-            <div className="flex justify-between mt-6">
-              <div className="flex gap-2">
-                <button
-                  onClick={() => alert('Print functionality not implemented')}
-                  className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                >
-                  Print
-                </button>
-              </div>
-              <div className="flex gap-2">
-                {modal.type !== 'view' && (
-                  <>
-                    <button
-                      onClick={handleModalSubmit}
-                      className="p-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                    >
-                      Save (F3)
-                    </button>
-                    <button
-                      onClick={handleModalSaveAndClose}
-                      className="p-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                    >
-                      Save & Close (F4)
-                    </button>
-                  </>
-                )}
-                <button
-                  onClick={() => setModal({ isOpen: false, type: '', data: null })}
-                  className="p-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-                >
-                  Cancel (Esc)
-                </button>
-              </div>
-            </div>
           </div>
         </div>
             )
       default:
         return (
-          <div className="space-y-4 bg-zinc-500/40">
-            {columns
-              .filter((col) => col.field !== 'selected' && col.field !== 'audited')
-              .map((col) => (
-                <div key={col.field}>
-                  <label className="block text-gray-700 font-medium">{col.label}</label>
-                  {renderInputField(col.field, newEntry[col.field] || '', {
-                    type: numericFields.includes(col.field) ? 'number' : 'text',
-                    placeholder: `Enter ${col.label}`,
-                  })}
-                </div>
-              ))}
-          </div>
+          <div className="min-h-screen bg-gray-50 flex justify-center items-center ">
+      <div className="w-full  bg-white space-y-8">
+        <h2 className="text-2xl font-bold text-gray-800">Dynamic Form</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {columns
+            .filter((col) => col.field !== 'selected' && col.field !== 'audited')
+            .map((col) => (
+              <div key={col.field}>
+                <label className="block text-sm font-medium text-gray-700 mb-1">{col.label}</label>
+                {renderInputField(col.field, newEntry[col.field] || '', {
+                  type: numericFields.includes(col.field) ? 'number' : 'text',
+                  placeholder: `Enter ${col.label}`,
+                })}
+              </div>
+            ))}
+        </div>
+      </div>
+    </div>
         );
     }
   };
@@ -2865,7 +2639,7 @@ const TableLayout = ({
                 className="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 shadow-md transition-all duration-200"
                 title="Audit"
               >
-                <i className="ri-file-shield-line"></i>
+                <i class="ri-file-lock-line"></i>
               </button>
             )}
             {showField && (
@@ -2883,7 +2657,7 @@ const TableLayout = ({
                 className="p-2 bg-green-500 text-white rounded-lg hover:bg-green-600 shadow-md transition-all duration-200"
                 title="Export to Excel"
               >
-                <i className="ri-file-excel-line"></i>
+                <i class="ri-file-excel-2-line"></i>
               </button>
             )}
             {showExportPDF && (
@@ -2892,23 +2666,23 @@ const TableLayout = ({
                 className="p-2 bg-red-500 text-white rounded-lg hover:bg-red-600 shadow-md transition-all duration-200"
                 title="Export to PDF"
               >
-                <i className="ri-file-pdf-line"></i>
+               <i class="ri-file-ppt-line"></i>
               </button>
             )}
           </div>
         </div>
       </div>
 
-      <div className="overflow-scroll scroller max-h-[calc(85vh-120px)]">
-        <table className="w-full text-left border-collapse min-w-[800px]">
+      <div className="overflow-scroll scroller h-[53vh]">
+        <table className="w-full text-left border-collapse ">
           <thead>
-            <tr className="bg-gradient-to-r from-blue-100 to-blue-200 sticky top-0 z-10">
+            <tr className="bg-gradient-to-r from-blue-100 to-blue-200 sticky top-0 z-10 text-nowrap">
               {columns.map((column, index) => (
                 <th
                   key={column.field}
                   className={`p-3 border-b border-gray-200 text-gray-700 font-semibold text-sm ${index === 0 ? 'rounded-tl-lg' : ''} ${index === columns.length - 1 ? 'rounded-tr-lg' : ''}`}
                 >
-                  <div className="flex items-center space-x-2">
+                  <div className="flex relative items-center space-x-2">
                     {column.label === 'A' ? (
                       <input
                         type="checkbox"
@@ -2932,9 +2706,10 @@ const TableLayout = ({
                           <i className="ri-filter-3-line"></i>
                         </button>
                         {openFilter === column.field && (
+                          // window filter
                           <div
                             ref={(el) => (filterRefs.current[column.field] = el)}
-                            className="absolute z-20 mt-2 left-0 bg-white border border-gray-200 rounded-lg shadow-xl p-4 w-64 max-h-48 overflow-y-auto"
+                            className="absolute z-20 mt-2 left-0 top-8 bg-white scroller border border-gray-200 rounded-lg shadow-xl p-4 w-64 max-h-48 overflow-y-auto"
                           >
                             {column.field === 'audited' ? (
                               <>
@@ -2956,6 +2731,7 @@ const TableLayout = ({
                               </>
                             ) : (
                               <>
+                              {/* window data */}
                                 <div className="flex items-center mb-3">
                                   <input
                                     type="checkbox"
@@ -2987,7 +2763,8 @@ const TableLayout = ({
                                 ))}
                               </>
                             )}
-                            <div className="flex justify-end gap-2 mt-3">
+                          {/* btn */}
+                            <div className="flex justify-end sticky bottom-0 gap-2 mt-3">
                               <button
                                 onClick={() => clearFilter(column.field)}
                                 className="p-2 px-4 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-all duration-200"
@@ -3020,10 +2797,10 @@ const TableLayout = ({
                     : index % 2 === 0
                     ? 'bg-white'
                     : 'bg-gray-50'
-                } hover:bg-blue-50 transition-all duration-200 border-b border-gray-100`}
+                } hover:bg-blue-50 text-nowrap  transition-all duration-200 border-b border-gray-100`}
               >
                 {columns.map((column) => (
-                  <td key={column.field} className="p-3 text-gray-700">
+                  <td key={column.field} className="p-2  text-zinc-800 text-[14px]">
                     <div className="flex items-center">
                       {column.field === 'selected' ? (
                         item.audited ? (
@@ -3056,7 +2833,7 @@ const TableLayout = ({
               </tr>
             ))}
             {numericFields.length > 0 && (
-              <tr className="bg-blue-100 font-semibold">
+              <tr className="font-semibold">
                 {columns.map((column) => (
                   <td key={column.field} className="p-3 text-gray-700">
                     {numericFields.includes(column.field) ? (
@@ -3084,8 +2861,8 @@ const TableLayout = ({
 
       {modal.isOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-4xl shadow-2xl max-h-[90vh] overflow-y-auto">
-            <h3 className="text-xl font-bold text-gray-800 mb-4">
+          <div className="bg-white rounded-lg p-6 w-full max-w-6xl shadow-2xl max-h-[90vh] overflow-y-auto scroller">
+            <h3 className="text-3xl uppercase tracking-wider font-bold text-gray-800 py-2 mb-3 border-b border-zinc-800">
               {modal.type === 'add' ? `Add ${title.split(' ')[1]} Entry` : modal.type === 'edit' ? `Edit ${title.split(' ')[1]} Entry` : `View ${title.split(' ')[1]} Entry`}
             </h3>
             {modal.type === 'view' ? (
@@ -3109,35 +2886,23 @@ const TableLayout = ({
               renderModalContent()
             )}
 
-            <div className="flex justify-between mt-6">
-              <div className="flex gap-2">
-                <button
-                  onClick={() => alert('Print functionality not implemented')}
-                  className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                >
-                  Print
-                </button>
-              </div>
-              <div className="flex gap-2">
+            <div className="flex justify-end mt-6  sticky bottom-0">
+             
+              <div className="flex gap-2 justify-end">
                 {modal.type !== 'view' && (
                   <>
                     <button
                       onClick={handleModalSubmit}
-                      className="p-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                      className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
                     >
                       Save
                     </button>
-                    <button
-                      onClick={handleModalSaveAndClose}
-                      className="p-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                    >
-                      Save & Close
-                    </button>
+                  
                   </>
                 )}
                 <button
                   onClick={() => setModal({ isOpen: false, type: '', data: null })}
-                  className="p-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+                  className="px-6 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
                 >
                   {modal.type === 'view' ? 'Close' : 'Cancel'}
                 </button>

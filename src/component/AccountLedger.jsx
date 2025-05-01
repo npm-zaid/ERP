@@ -1,5 +1,5 @@
 import React from 'react';
-import TableLayout2 from './TableLayout2';
+import TableLayout from './TableLayout';
 
 const AccountLedger = () => {
   const initialData = [
@@ -25,7 +25,7 @@ const AccountLedger = () => {
   const numericFields = ['opening', 'closingBalance'];
 
   return (
-    <TableLayout2
+    <TableLayout
       title="Account Ledger"
       columns={columns}
       initialData={initialData}
