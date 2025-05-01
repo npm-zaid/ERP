@@ -50,6 +50,7 @@ import CommoditiesPlanReport from '../Sea-Components/CommoditiesPlanReport'
 import DeliveryPlanReport from '../Sea-Components/DeliveryPlanReport'
 import ContainerReturnReport from '../Sea-Components/ContainerReturnReport'
 import EntryPlanReport from '../Sea-Components/EntryPlanReport'
+import ProfileCard from './Navbar/ProfileCard'
 
 const Container = ({isOpen, setIsOpen}) => {
   return (
@@ -109,7 +110,8 @@ const Container = ({isOpen, setIsOpen}) => {
         <Route path="/goods-received" element={<GoodsReceived />} />  
         <Route path="/container-interchange" element={<ContainerInterchange />} />  
         
-        
+        {/* profile */}
+        <Route path="/profile" element={<ProfileCard />} />
         </Routes>
       
      

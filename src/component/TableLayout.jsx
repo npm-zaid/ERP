@@ -2732,7 +2732,7 @@ const TableLayout = ({
                             ) : (
                               <>
                               {/* window data */}
-                                <div className="flex items-center mb-3">
+                                {/* <div className="flex items-center mb-3">
                                   <input
                                     type="checkbox"
                                     id={`${column.field}-select-all`}
@@ -2746,7 +2746,7 @@ const TableLayout = ({
                                   <label htmlFor={`${column.field}-select-all`} className="text-gray-700 font-medium">
                                     Select All
                                   </label>
-                                </div>
+                                </div> */}
                                 {getUniqueValues(column.field).map((value) => (
                                   <div key={value} className="flex items-center mb-2">
                                     <input
