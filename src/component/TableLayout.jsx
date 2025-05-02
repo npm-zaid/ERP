@@ -7,7 +7,7 @@ const TableLayout = ({
   title,
   columns,
   initialData,
-  numericFields = [],
+  numericFields,
   showAdd,
   showEdit,
   showView,
@@ -2822,7 +2822,7 @@ const TableLayout = ({
                       ) : numericFields.includes(column.field) ? (
                         <span className={item[column.field] < 0 ? 'text-red-600' : 'text-green-600'}>
                           {Math.abs(parseFloat(item[column.field]) || 0).toFixed(2)}{' '}
-                          {item[column.field] < 0 ? 'Cr' : 'Db'}
+                          {/* {item[column.field] < 0 ? 'Cr' : 'Db'} */}
                         </span>
                       ) : (
                         item[column.field] || ''
@@ -2832,7 +2832,7 @@ const TableLayout = ({
                 ))}
               </tr>
             ))}
-            {numericFields.length > 0 && (
+            {/* {numericFields.length > 0 && (
               <tr className="font-semibold">
                 {columns.map((column) => (
                   <td key={column.field} className="p-3 text-gray-700">
@@ -2849,7 +2849,7 @@ const TableLayout = ({
                   </td>
                 ))}
               </tr>
-            )}
+            )} */}
           </tbody>
         </table>
         {filteredData.length === 0 && (

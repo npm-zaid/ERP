@@ -92,8 +92,8 @@ const PartyLR = () => {
       <h2 className="text-2xl font-bold text-indigo-700 mb-5 border-b-4 border-indigo-200 pb-3">
         Party LR Not Created
       </h2>
-      <div className="scroller  rounded-lg">
-        <div className="heading bg-indigo-100 border-b border-indigo-200 py-3 px-2 flex justify-between items-center text-black font-bold relative">
+      <div className="scroller relative rounded-lg">
+        <div className="heading sticky top-0 z-10 bg-indigo-100 border-b border-indigo-200 py-3 px-2 flex justify-between items-center text-black font-bold ">
           {columns.map((column) => (
             <div key={column.field} className="relative flex justify-between items-center">
               <span>{column.label}</span>
@@ -145,10 +145,10 @@ const PartyLR = () => {
         {filteredData.map((item, index) => (
           <div
             key={index}
-            className="flex justify-between items-center py-4 border-b border-gray-200 hover:bg-indigo-100 transition duration-300 cursor-pointer animate-fade-in"
+            className="flex justify-between text-sm items-center py-2 border-b border-gray-200 hover:bg-indigo-100 transition duration-300 cursor-pointer animate-fade-in"
           >
-            <span className="text-gray-800 font-semibold text-lg">{item.accountName}</span>
-            <span className="text-gray-600 text-base bg-gray-100 px-3 py-1 rounded-full">{item.lastLRDate}</span>
+            <span className="text-gray-800 font-semibold ">{item.accountName}</span>
+            <span className="text-gray-600  bg-gray-100 px-3 py-1 rounded-full">{item.lastLRDate}</span>
           </div>
         ))}
       </div>

@@ -50,7 +50,50 @@ import CommoditiesPlanReport from '../Sea-Components/CommoditiesPlanReport'
 import DeliveryPlanReport from '../Sea-Components/DeliveryPlanReport'
 import ContainerReturnReport from '../Sea-Components/ContainerReturnReport'
 import EntryPlanReport from '../Sea-Components/EntryPlanReport'
+
+//profile
 import ProfileCard from './Navbar/ProfileCard'
+
+
+//transactions
+import ListOfCrossingLr from './Navbar/ListOfCrossingLr'
+import ListOfMemoTransfer from './Navbar/ListOfMemoTransfer'
+import ListOfLoadingSheet from './Navbar/ListOfLoadingSheet'
+import ListOfDeliveryMemo from './Navbar/ListOfDeliveryMemo'
+import ListOfTrip from './Navbar/ListOfTrip'
+import ListOfTruckExpense from './Navbar/ListOfTruckExpense'
+import ListOfBankReceipt from './Navbar/ListOfBankReceipt'
+import ListOfFundReceive from './Navbar/ListOfFundReceive'
+import ListOfFundTransfer from './Navbar/ListOfFundTransfer'
+import ListOfContra from './Navbar/ListOfContra'
+import ListOfJournal from './Navbar/ListOfJournal'
+import ListOfCreditNote from './Navbar/ListOfCreditNote'
+import ListOfDebitNote from './Navbar/ListOfDebitNote'
+import ListOfExpense from './Navbar/ListOfExpense'
+import ListOfQuotation from './Navbar/ListOfQuotation'
+import ListOfPurchaseOrder from './Navbar/ListOfPurchaseOrder'
+import GSTJournal from './Navbar/GSTJournal'
+import GSTUtilization from './Navbar/GSTUtilization'
+import GSTPayment from './Navbar/GSTPayment'
+import GSTIncomeEntry from './Navbar/GSTIncomeEntry'
+import GSTExpenseEntry from './Navbar/GSTExpenseEntry'
+import GSTRcmEntry from './Navbar/GSTRcmEntry'
+import CreditNoteWithoutStock from './Navbar/CreditNoteWithoutStock'
+import CreditNoteWithStock from './Navbar/CreditNoteWithStock'
+import DebitNoteWithoutStock from './Navbar/DebitNoteWithoutStock'
+import DebitNoteWithStock from './Navbar/DebitNoteWithStock'
+
+import ListOfEstSalesInvoice from './Navbar/ListOfEstSalesInvoice'
+import ListOfSupplementaryInvoice from './Navbar/ListOfSupplementaryInvoice'
+import ListOfEstTransportBill from './Navbar/ListOfEstTransportBill'
+import ListOfFreightBill from './Navbar/ListOfFreightBill'
+import StockInward from './Navbar/StockInward'
+import StockOutward from './Navbar/StockOutward'
+import StockInwardFromTruck from './Navbar/StockInwardFromTruck'
+import StockRemovalEntry from './Navbar/StockRemovalEntry'
+
+
+
 
 const Container = ({isOpen, setIsOpen}) => {
   return (
@@ -77,7 +120,15 @@ const Container = ({isOpen, setIsOpen}) => {
         <Route path="/receivable-account" element={<ReceivableAccount/>} />
         <Route path="/payable-account" element={<PayableAccount/>} />
 
-        {/* navbar */}
+          {/* sea components */}
+          <Route path="/proof-of-delivery" element={<ProofOfDelivery />} />  
+        <Route path="/goods-received" element={<GoodsReceived />} />  
+        <Route path="/container-interchange" element={<ContainerInterchange />} />  
+        
+
+        {/* navbar links */}
+
+        {/* master */}
         <Route path="/master/Account" element={<ListOfAccount />} />
         <Route path="/master/Account-Group" element={<ListOfAccountGroup />} />
         <Route path="/master/Packing" element={<ListOfPacking />} />            
@@ -98,18 +149,70 @@ const Container = ({isOpen, setIsOpen}) => {
         <Route path="/reports/WH. Processing" element={<WarehouseProcessingReport />} />  
         <Route path="/reports/Warehouse Stock" element={<WarehouseStockReport />} />  
         <Route path="/reports/Trucks" element={<TrucksReport />} />  
-         
         <Route path="/reports/Delivery Plan" element={<DeliveryPlanReport />} />  
         <Route path="/reports/Commodities" element={<CommoditiesPlanReport />} />  
         <Route path="/reports/Container Return" element={<ContainerReturnReport />} />  
         <Route path="/reports/Entry Plan" element={<EntryPlanReport />} />  
         
+        {/* transactions */}
+        <Route path="/transactions/Outward/LR. Entry" element={<ListOfLR/>} />  
+        <Route path="/transactions/Outward/Memo Entry" element={<ListOfMemo/>} />  
+        <Route path="/transactions/Outward/Crossing Lr" element={<ListOfCrossingLr/>} />  
+        <Route path="/transactions/Outward/Memo Transfer" element={<ListOfMemoTransfer/>} />  
+        <Route path="/transactions/Outward/Loading Sheet" element={<ListOfLoadingSheet/>} />  
+        <Route path="/transactions/Inward/Memo Receive" element={<ListOfMemoReceived/>} />  
+        <Route path="/transactions/Inward/Delivery Of Memo" element={<ListOfDeliveryMemo/>} />  
+        <Route path="/transactions/Inward/Delivery Of LR" element={<ListOfDelivery/>} />  
+        <Route path='/transactions/Trip Entry' element={<ListOfTrip/>} />  
+        <Route path='/transactions/Full Load' element={<ListOfFullLoad/>} />  
+        <Route path='/transactions/Truck Expense' element={<ListOfTruckExpense/>} /> 
 
-        {/* sea components */}
-        <Route path="/proof-of-delivery" element={<ProofOfDelivery />} />  
-        <Route path="/goods-received" element={<GoodsReceived />} />  
-        <Route path="/container-interchange" element={<ContainerInterchange />} />  
+        <Route path='/transactions/bank/cash/Bank Receipt' element={<ListOfBankReceipt/>} />  
+        <Route path='/transactions/bank/cash/Bank Payment' element={<ListOfBankPayment/>} />  
+        <Route path='/transactions/bank/cash/Cash Receipt' element={<ListOfCashReceipt/>} />  
+        <Route path='/transactions/bank/cash/Cash Payment' element={<ListOfCashPayment/>} />  
+        <Route path='/transactions/bank/cash/Contra' element={<ListOfContra/>} />  
+        <Route path='/transactions/bank/cash/Fund Receive' element={<ListOfFundReceive/>} />  
+        <Route path='/transactions/bank/cash/Fund Transfer' element={<ListOfFundTransfer/>} />  
+
+{/*         
+        <Route path='/transactions/Journal voucher/Journal voucher' element={<ListOfJournal/>} />  
+        <Route path='/transactions/Journal voucher/Credit Note' element={<ListOfCreditNote/>} />  
+        <Route path='/transactions/Journal voucher/Debit Note' element={<ListOfDebitNote/>} />  
+        <Route path='/transactions/Journal voucher/Expense Entry' element={<ListOfExpense/>} />  
+        <Route path='/transactions/Quotation' element={<ListOfQuotation/>} />  
+        <Route path='/transactions/Purchase Order' element={<ListOfPurchaseOrder/>} />  
+
+        <Route path='/transactions/gst/GST Journal' element={<GSTJournal/>} />  
+        <Route path='/transactions/gst/GST Utilization' element={<GSTUtilization/>} />  
+        <Route path='/transactions/gst/GST Payment' element={<GSTPayment/>} />  
+        <Route path='/transactions/gst/GST Income Entry' element={<GSTIncomeEntry/>} />  
+        <Route path='/transactions/gst/GST Expense Entry' element={<GSTExpenseEntry/>} />  
+        <Route path='/transactions/gst/GST RCM Entry' element={<GSTRcmEntry/>} />  
+        <Route path='/transactions/gst/CN Entry w/o Stock' element={<CreditNoteWithoutStock/>} />  
+        <Route path='/transactions/gst/CN Entry With Stock' element={<CreditNoteWithStock/>} />  
+        <Route path='/transactions/gst/DN Entry w/o Stock' element={<DebitNoteWithoutStock/>} />  
+        <Route path='/transactions/gst/DN Entry With Stock' element={<DebitNoteWithStock/>} />  
+
+        <Route path='/transactions/sales/Sales Bill' element={<ListOfSalesInvoice/>} />  
+        <Route path='/transactions/sales/Trans Bill' element={<ListOfTranspoterBill/>} />
+        <Route path='/transactions/sales/Estimate Bill' element={<ListOfEstSalesInvoice/>} />  
+        <Route path='/transactions/sales/Supplementary Bill' element={<ListOfSupplementaryInvoice/>} />  
+        <Route path='/transactions/sales/Est Transport Bill' element={<ListOfEstTransportBill/>} /> 
+        <Route path='/transactions/sales/Freight Bill' element={<ListOfFreightBill/>} /> 
+
+        <Route path='/transactions/inventory/Stock Inward' element={<StockInward/>} /> 
+        <Route path='/transactions/inventory/Stock Outward' element={<StockOutward/>} /> 
+        <Route path='/transactions/inventory/Stock Inward from Truck' element={<StockInwardFromTruck/>} /> 
+        <Route path='/transactions/inventory/Stock Removal Entry' element={<StockRemovalEntry/>} /> 
+          */}
         
+    
+       
+       
+
+
+      
         {/* profile */}
         <Route path="/profile" element={<ProfileCard />} />
         </Routes>

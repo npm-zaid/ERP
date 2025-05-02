@@ -7,7 +7,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
     <div className={`h-screen overflow-y-scroll scroller bg-white  text-black p-5 transition-all z-40  duration-300 ${isOpen ? 'sm:w-[25vw] w-[100vw]' : 'sm:w-[8vw] w-[15vw]'}`}>
     <div className={`flex flex-col gap-2  ${isOpen ? 'items-start' : 'items-center'}`}>
 
-      <div className="flex items-center mb-3">
+      <div className="flex items-center mb-2">
         <button onClick={() => setIsOpen(!isOpen)} className="text-2xl text-[#397BD0] transition-all group relative">
         {isOpen?<i class="ri-close-large-line"></i>:<i class="ri-menu-line"></i>}
         
@@ -23,7 +23,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
         to="/"
         onClick={() => setIsOpen(false)}
         className={({isActive}) => 
-          `p-3 rounded-lg transition-all duration-300 flex items-center gap-3 group relative
+          `px-2 rounded-sm transition-all duration-300 flex items-center gap-3 group relative
           ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
         }
       >
@@ -36,7 +36,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
         to="/proof-of-delivery"
         onClick={() => setIsOpen(false)}
         className={({isActive}) => 
-          `p-3 rounded-lg transition-all duration-300 flex items-center gap-3 group relative
+          `px-2 rounded-sm transition-all duration-300 flex items-center gap-3 group relative
           ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
         }
       >
@@ -49,7 +49,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
         to="/goods-received"
         onClick={() => setIsOpen(false)}
         className={({isActive}) => 
-          `p-3 rounded-lg transition-all duration-300 flex items-center gap-3 group relative
+          `px-2 rounded-sm transition-all duration-300 flex items-center gap-3 group relative
           ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
         }
       >
@@ -62,7 +62,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
         to="/container-interchange"
         onClick={() => setIsOpen(false)}
         className={({isActive}) => 
-          `p-3 rounded-lg transition-all duration-300 flex items-center gap-3 group relative
+          `px-2 rounded-sm transition-all duration-300 flex items-center gap-3 group relative
           ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
         }
       >
@@ -76,7 +76,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
         to="/list-of-lr"
         onClick={() => setIsOpen(false)}
         className={({isActive}) =>
-          `p-3 rounded-lg transition-all duration-300 flex items-center gap-3 group relative
+          `px-2 rounded-sm transition-all duration-300 flex items-center gap-3 group relative
           ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
         }
       >
@@ -89,7 +89,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
         to="/list-of-memo" 
         onClick={() => setIsOpen(false)}
         className={({isActive}) =>
-          `p-3 rounded-lg transition-all duration-300 flex items-center gap-3 group relative
+          `px-2 rounded-sm transition-all duration-300 flex items-center gap-3 group relative
           ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
         }
       >
@@ -102,7 +102,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
         to="/list-of-memo-received"
         onClick={() => setIsOpen(false)}
         className={({isActive}) =>
-          `p-3 rounded-lg transition-all duration-300 flex items-center gap-3 group relative
+          `px-2 rounded-sm transition-all duration-300 flex items-center gap-3 group relative
           ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
         }
       >
@@ -115,7 +115,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
         to="/list-of-delivery"
         onClick={() => setIsOpen(false)}
         className={({isActive}) =>
-          `p-3 rounded-lg transition-all duration-300 flex items-center gap-3 group relative
+          `px-2 rounded-sm transition-all duration-300 flex items-center gap-3 group relative
           ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
         }
       >
@@ -128,7 +128,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
         to="/list-of-full-load"
         onClick={() => setIsOpen(false)}
         className={({isActive}) =>
-          `p-3 rounded-lg transition-all duration-300 flex items-center gap-3 group relative
+          `px-2 rounded-sm transition-all duration-300 flex items-center gap-3 group relative
           ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
         }
       >
@@ -141,7 +141,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
         to="/list-of-sales-invoice"
         onClick={() => setIsOpen(false)}
         className={({isActive}) =>
-          `p-3 rounded-lg transition-all duration-300 flex items-center gap-3 group relative
+          `px-2 rounded-sm transition-all duration-300 flex items-center gap-3 group relative
           ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
         }
       >
@@ -157,7 +157,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
         to="/list-of-transporter-bill"
         onClick={() => setIsOpen(false)}
         className={({isActive}) => 
-          `p-3 rounded-lg transition-all duration-300 flex items-center gap-3 group relative
+          `px-2 rounded-sm transition-all duration-300 flex items-center gap-3 group relative
           ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
         }
       >
@@ -170,7 +170,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
         to="/list-of-cash-payment"
         onClick={() => setIsOpen(false)}
         className={({isActive}) =>
-          `p-3 rounded-lg transition-all duration-300 flex items-center gap-3 group relative
+          `px-2 rounded-sm transition-all duration-300 flex items-center gap-3 group relative
           ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
         }
       >
@@ -183,7 +183,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
         to="/list-of-cash-receipt" 
         onClick={() => setIsOpen(false)}
         className={({isActive}) =>
-          `p-3 rounded-lg transition-all duration-300 flex items-center gap-3 group relative
+          `px-2 rounded-sm transition-all duration-300 flex items-center gap-3 group relative
           ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
         }
       >
@@ -196,7 +196,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
         to="/list-of-bank-payment"
         onClick={() => setIsOpen(false)}
         className={({isActive}) =>
-          `p-3 rounded-lg transition-all duration-300 flex items-center gap-3 group relative
+          `px-2 rounded-sm transition-all duration-300 flex items-center gap-3 group relative
           ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
         }
       >
@@ -209,7 +209,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
         to="/account-ledger"
         onClick={() => setIsOpen(false)}
         className={({isActive}) =>
-          `p-3 rounded-lg transition-all duration-300 flex items-center gap-3 group relative
+          `px-2 rounded-sm transition-all duration-300 flex items-center gap-3 group relative
           ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
         }
       >
@@ -222,7 +222,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
         to="/lr-register"
         onClick={() => setIsOpen(false)}
         className={({isActive}) =>
-          `p-3 rounded-lg transition-all duration-300 flex items-center gap-3 group relative
+          `px-2 rounded-sm transition-all duration-300 flex items-center gap-3 group relative
           ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
         }
       >
@@ -235,7 +235,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
         to="/godown-stock"
         onClick={() => setIsOpen(false)}
         className={({isActive}) =>
-          `p-3 rounded-lg transition-all duration-300 flex items-center gap-3 group relative
+          `px-2 rounded-sm transition-all duration-300 flex items-center gap-3 group relative
           ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
         }
       >
@@ -248,7 +248,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
         to="/payable-account"
         onClick={() => setIsOpen(false)}
         className={({isActive}) =>
-          `p-3 rounded-lg transition-all duration-300 flex items-center gap-3 group relative
+          `px-2 rounded-sm transition-all duration-300 flex items-center gap-3 group relative
           ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
         }
       >
@@ -261,7 +261,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
         to="/receivable-account"
         onClick={() => setIsOpen(false)}
         className={({isActive}) =>
-          `p-3 rounded-lg transition-all duration-300 flex items-center gap-3 group relative
+          `px-2 rounded-sm transition-all duration-300 flex items-center gap-3 group relative
           ${isActive ? 'bg-[#397BD0] text-white' : ''} ${isOpen ? 'w-full' : ''}`
         }
       >
@@ -270,7 +270,7 @@ const Sidebar = ({isOpen, setIsOpen}) => {
        
       </NavLink>
 
-      <button onClick={()=>setToken("")} className={`${isOpen ? 'w-full' : ''} mt-auto p-3 bg-[#397BD0]  hover:bg-[#397BD0]/80 text-white transition-all duration-300 rounded-lg flex items-center gap-3 group relative`}>
+      <button onClick={()=>setToken("")} className={`${isOpen ? 'w-full' : ''} mt-auto p-3 bg-[#397BD0]  hover:bg-[#397BD0]/80 text-white transition-all duration-300 rounded-sm flex items-center gap-3 group relative`}>
         <i className="ri-logout-box-line"></i>
         
         {isOpen && "Logout"}

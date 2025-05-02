@@ -141,7 +141,7 @@ const BillReminder = () => {
                     className={`p-4 border-b-2 border-blue-200 text-gray-700 font-semibold ${index === 0 ? 'rounded-tl-lg' : ''} ${index === columns.length - 1 ? 'rounded-tr-lg' : ''}`}
                   >
                     <div className="relative flex items-center justify-between">
-                      <span>{column.label}</span>
+                      <span className=" font-bold text-nowrap">{column.label}</span>
                       <button
                         onClick={() => toggleFilterDropdown(column.field)}
                         className="ml-2 text-gray-600 hover:text-blue-600"
@@ -191,12 +191,12 @@ const BillReminder = () => {
             </thead>
             <tbody>
               {filteredData.map((reminder) => (
-                <tr key={reminder.id} className="hover:bg-gray-50 transition-colors duration-200">
-                  <td className="p-4 border-b border-gray-400">{reminder.id}</td>
-                  <td className="p-4 border-b border-gray-400">{reminder.date}</td>
-                  <td className="p-4 border-b border-gray-400">{reminder.time}</td>
-                  <td className="p-4 border-b border-gray-400">{reminder.detail}</td>
-                  <td className="p-4 border-b border-gray-400">{reminder.RTO}</td>
+                <tr key={reminder.id} className="hover:bg-gray-50 transition-colors text-sm text-nowrap duration-200">
+                  <td className="p-2 border-b border-gray-400">{reminder.id}</td>
+                  <td className="p-2 border-b border-gray-400">{reminder.date}</td>
+                  <td className="p-2 border-b border-gray-400">{reminder.time}</td>
+                  <td className="p-2 border-b border-gray-400">{reminder.detail}</td>
+                  <td className="p-2 border-b border-gray-400">{reminder.RTO}</td>
                 </tr>
               ))}
             </tbody>
@@ -212,15 +212,15 @@ const BillReminder = () => {
           {reminders.map((reminder) => (
             <div
               key={reminder.id}
-              className="flex justify-between mb-3 items-center p-4 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 border border-gray-100"
+              className="flex justify-between mb-3 text-sm text-nowrap items-center p-2 bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-200 border border-gray-100"
             >
               <div>
-                <p className="text-lg font-semibold text-black italic">{reminder.id}</p>
+                <p className="font-semibold text-black italic">{reminder.id}</p>
                 <p className="text-gray-600">{reminder.detail}</p>
               </div>
               <div className="text-right">
-                <p className="text-md font-medium text-black">{reminder.date}</p>
-                <p className="text-sm text-gray-600">{reminder.time}</p>
+                <p className=" font-medium text-black">{reminder.date}</p>
+                <p className=" text-gray-600">{reminder.time}</p>
               </div>
             </div>
           ))}

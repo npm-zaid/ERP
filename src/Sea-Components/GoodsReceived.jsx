@@ -42,8 +42,8 @@ const GoodsReceived = () => {
           </h2>
           <span className="font-bold hidden md:block">DATE - {new Date().toLocaleDateString()}</span>
         </div>
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-200 p-4 rounded-lg shadow-md">
+        <form onSubmit={handleSubmit} className="space-y-3 text-sm">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 "> 
             <div className="flex-1">
               <label className="text-gray-900 flex items-center gap-2">
                 <i className="ri-user-line text-[#397BD0]"></i>
@@ -54,7 +54,7 @@ const GoodsReceived = () => {
                 value={clientName}
                 onChange={(e) => setClientName(e.target.value)}
                 placeholder="BLS Operations"
-                className="w-full p-2 mt-1 bg-gray-300 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
+                className="w-full p-2 mt-1 bg-gray-200 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
               />
             </div>
             <div className="flex-1">
@@ -67,11 +67,11 @@ const GoodsReceived = () => {
                 value={originFrom}
                 onChange={(e) => setOriginFrom(e.target.value)}
                 placeholder="Origin From"
-                className="w-full p-2 mt-1 bg-gray-300 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
+                className="w-full p-2 mt-1 bg-gray-200 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
               />
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 bg-gray-200 p-4 rounded-lg shadow-md">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 "> 
             <div className="flex-1">
               <label className="text-gray-900 flex items-center gap-2">
                 <i className="ri-truck-line text-[#397BD0]"></i>
@@ -82,7 +82,7 @@ const GoodsReceived = () => {
                 value={transporterName}
                 onChange={(e) => setTransporterName(e.target.value)}
                 placeholder="Transporter Name"
-                className="w-full p-2 mt-1 bg-gray-300 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
+                className="w-full p-2 mt-1 bg-gray-200 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
               />
             </div>
             <div className="flex-1">
@@ -95,7 +95,7 @@ const GoodsReceived = () => {
                 value={truck}
                 onChange={(e) => setTruck(e.target.value)}
                 placeholder="Truck"
-                className="w-full p-2 mt-1 bg-gray-300 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
+                className="w-full p-2 mt-1 bg-gray-200 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
               />
             </div>
             <div className="flex-1">
@@ -108,11 +108,11 @@ const GoodsReceived = () => {
                 value={trailer}
                 onChange={(e) => setTrailer(e.target.value)}
                 placeholder="Trailer"
-                className="w-full p-2 mt-1 bg-gray-300 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
+                className="w-full p-2 mt-1 bg-gray-200 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
               />
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-200 p-4 rounded-lg shadow-md">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 "> 
             <div className="flex-1">
               <label className="text-gray-900 flex items-center gap-2">
                 <i className="ri-user-smile-line text-[#397BD0]"></i>
@@ -123,7 +123,7 @@ const GoodsReceived = () => {
                 value={driverName}
                 onChange={(e) => setDriverName(e.target.value)}
                 placeholder="Driver Name"
-                className="w-full p-2 mt-1 bg-gray-300 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
+                className="w-full p-2 mt-1 bg-gray-200 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
               />
             </div>
             <div className="flex-1">
@@ -136,11 +136,11 @@ const GoodsReceived = () => {
                 value={idPassportNo}
                 onChange={(e) => setIdPassportNo(e.target.value)}
                 placeholder="ID/Passport No."
-                className="w-full p-2 mt-1 bg-gray-300 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
+                className="w-full p-2 mt-1 bg-gray-200 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
               />
             </div>
           </div>
-          <div className="bg-gray-200 p-4 rounded-lg shadow-md">
+          <div className=""> 
             <label className="text-gray-900 flex items-center gap-2">
               <i className="ri-package-line text-[#397BD0]"></i>
               Commodity
@@ -150,10 +150,10 @@ const GoodsReceived = () => {
               value={commodity}
               onChange={(e) => setCommodity(e.target.value)}
               placeholder="Commodity"
-              className="w-full p-2 mt-1 bg-gray-300 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
+              className="w-full p-2 mt-1 bg-gray-200 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
             />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 bg-gray-200 p-4 rounded-lg shadow-md">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 "> 
             <div className="flex-1">
               <label className="text-gray-900 flex items-center gap-2">
                 <i className="ri-file-line text-[#397BD0]"></i>
@@ -164,7 +164,7 @@ const GoodsReceived = () => {
                 value={referenceBLNo}
                 onChange={(e) => setReferenceBLNo(e.target.value)}
                 placeholder="Reference/BL No."
-                className="w-full p-2 mt-1 bg-gray-300 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
+                className="w-full p-2 mt-1 bg-gray-200 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
               />
             </div>
             <div className="flex-1">
@@ -177,7 +177,7 @@ const GoodsReceived = () => {
                 value={containerNo}
                 onChange={(e) => setContainerNo(e.target.value)}
                 placeholder="Container No."
-                className="w-full p-2 mt-1 bg-gray-300 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
+                className="w-full p-2 mt-1 bg-gray-200 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
               />
             </div>
             <div className="flex-1">
@@ -190,7 +190,7 @@ const GoodsReceived = () => {
                 value={quantity}
                 onChange={(e) => setQuantity(e.target.value)}
                 placeholder="Quantity"
-                className="w-full p-2 mt-1 bg-gray-300 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
+                className="w-full p-2 mt-1 bg-gray-200 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
               />
             </div>
             <div className="flex-1">
@@ -201,7 +201,7 @@ const GoodsReceived = () => {
               <select
                 value={type}
                 onChange={(e) => setType(e.target.value)}
-                className="w-full p-2 mt-1 bg-gray-300 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
+                className="w-full p-2 mt-1 bg-gray-200 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
               >
                 <option value="">Select</option>
                 <option value="Chemical">Chemical</option>
@@ -212,7 +212,7 @@ const GoodsReceived = () => {
               </select>
             </div>
           </div>
-          <div className="bg-gray-200 p-4 rounded-lg shadow-md border-l-4 border-[#397BD0]">
+          <div className=" border-l-4 p-3 rounded-xl border-[#397BD0]">
             <h3 className="text-lg font-semibold text-[#397BD0] mb-4 flex items-center gap-2">
               <i className="ri-arrow-right-line text-[#397BD0]"></i>
               Incomings
@@ -226,11 +226,10 @@ const GoodsReceived = () => {
               ].map((item, index) => (
                 <div
                   key={`incoming-${index}`}
-                  className="grid grid-cols-1 md:grid-cols-[1fr_1fr_2fr] gap-4 bg-gray-100 text-gray-900 p-4 rounded-lg shadow-md hover:shadow-xl hover:bg-[#397BD0]/10 transition-all duration-300 border-l-2 border-transparent hover:border-[#397BD0]"
+                  className="grid grid-cols-1 md:grid-cols-[1fr_1fr_2fr] gap-4 bg-gray-100 text-gray-900 p-2 rounded-lg shadow-md hover:shadow-xl hover:bg-[#397BD0]/10 transition-all duration-300 border-l-2 border-transparent hover:border-[#397BD0]"
                 >
-                  <div className="font-medium flex items-center gap-2 md:text-base text-sm">
-                    <i className={`${item.icon} text-[#397BD0] md:hidden`}></i>
-                    <span className="md:hidden">ID: </span>
+                  <div className="font-medium flex items-center gap-2 ">
+            
                     {item.id}
                   </div>
                   <div>
@@ -239,7 +238,7 @@ const GoodsReceived = () => {
                       Status
                     </label>
                     <select
-                      className="w-full p-2 bg-gray-300 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
+                      className="w-full p-2 bg-gray-200 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
                     >
                       <option value="">YES/NO</option>
                       <option value="yes">Yes</option>
@@ -254,14 +253,14 @@ const GoodsReceived = () => {
                     <input
                       type="text"
                       placeholder={item.placeholder}
-                      className="w-full p-2 bg-gray-300 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
+                      className="w-full p-2 bg-gray-200 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
                     />
                   </div>
                 </div>
               ))}
             </div>
           </div>
-          <div className="bg-gray-200 p-4 rounded-lg shadow-md border-l-4 border-[#397BD0]">
+          <div className=" border-l-4 p-3 rounded-xl border-[#397BD0]">
             <h3 className="text-lg font-semibold text-[#397BD0] mb-4 flex items-center gap-2">
               <i className="ri-arrow-left-line text-[#397BD0]"></i>
               Outgoings
@@ -275,9 +274,9 @@ const GoodsReceived = () => {
               ].map((item, index) => (
                 <div
                   key={`outgoing-${index}`}
-                  className="grid grid-cols-1 md:grid-cols-[1fr_1fr_2fr] gap-4 bg-gray-100 text-gray-900 p-4 rounded-lg shadow-md hover:shadow-xl hover:bg-[#397BD0]/10 transition-all duration-300 border-l-2 border-transparent hover:border-[#397BD0]"
+                  className="grid grid-cols-1 md:grid-cols-[1fr_1fr_2fr] gap-4 bg-gray-100 text-gray-900 p-2 rounded-lg shadow-md hover:shadow-xl hover:bg-[#397BD0]/10 transition-all duration-300 border-l-2 border-transparent hover:border-[#397BD0]"
                 >
-                  <div className="font-medium flex items-center gap-2 md:text-base text-sm">
+                  <div className="font-medium flex items-center gap-2">
                     <i className={`${item.icon} text-[#397BD0] md:hidden`}></i>
                     <span className="md:hidden">ID: </span>
                     {item.id}
@@ -288,7 +287,7 @@ const GoodsReceived = () => {
                       Status
                     </label>
                     <select
-                      className="w-full p-2 bg-gray-300 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
+                      className="w-full p-2 bg-gray-200 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
                     >
                       <option value="">YES/NO</option>
                       <option value="yes">Yes</option>
@@ -303,14 +302,14 @@ const GoodsReceived = () => {
                     <input
                       type="text"
                       placeholder={item.placeholder}
-                      className="w-full p-2 bg-gray-300 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
+                      className="w-full p-2 bg-gray-200 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
                     />
                   </div>
                 </div>
               ))}
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-200 p-4 rounded-lg shadow-md">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
             <div className="flex-1">
               <label className="text-gray-900 flex items-center gap-2">
                 <i className="ri-edit-line text-[#397BD0]"></i>
@@ -319,7 +318,7 @@ const GoodsReceived = () => {
               <input
                 type="text"
                 placeholder="Operations Signature"
-                className="w-full p-2 mt-1 bg-gray-300 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
+                className="w-full p-2 mt-1 bg-gray-200 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
               />
             </div>
             <div className="flex-1">
@@ -330,13 +329,13 @@ const GoodsReceived = () => {
               <input
                 type="text"
                 placeholder="Manager Signature"
-                className="w-full p-2 mt-1 bg-gray-300 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
+                className="w-full p-2 mt-1 bg-gray-200 text-gray-900 rounded focus:ring-2 focus:ring-[#397BD0] focus:outline-none"
               />
             </div>
           </div>
           <button
             type="submit"
-            className="w-full bg-[#397BD0] text-white py-2 rounded-lg shadow-md active:scale-95 transition-all duration-300 hover:bg-[#2e62a8]"
+            className="w-full bg-[#397BD0] uppercase tracking-wider text-lg  text-white py-2 rounded-lg shadow-md active:scale-95 transition-all duration-300 hover:bg-[#2e62a8]"
           >
             Submit
           </button>

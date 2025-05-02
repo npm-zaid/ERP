@@ -176,12 +176,12 @@ const PendingDelivery = () => {
           Pending Delivery From Such Days
         </h2>
       </div>
-      <div className="  rounded-lg">
+      <div className=" rounded-lg">
         <div className="min-w-max">
           <div className="grid grid-cols-6 text-gray-800 font-bold py-3 px-2 bg-red-100 border-b border-red-200 rounded-t-lg relative">
             {columns.map((column) => (
               <div key={column.field} className="relative">
-                <span>{column.label}</span>
+                <span >{column.label}</span>
                 <button
                   onClick={() => toggleFilterDropdown(column.field)}
                   className="ml-2 text-gray-600 hover:text-red-600"
@@ -232,9 +232,9 @@ const PendingDelivery = () => {
               filteredData.map((item, index) => (
                 <div
                   key={index}
-                  className="grid grid-cols-6 py-3 border-b border-gray-200 hover:bg-red-100 transition duration-300 cursor-pointer animate-fade-in"
+                  className="grid grid-cols-6 py-2 border-b text-sm border-gray-200 hover:bg-red-100 transition duration-300 cursor-pointer animate-fade-in"
                 >
-                  <span className="text-gray-800 font-medium">{item.lrDate}</span>
+                  <span className="text-gray-800 ">{item.lrDate}</span>
                   <span className="text-gray-800">{item.center}</span>
                   <span className="text-gray-800">{item.toCity}</span>
                   <span className="text-gray-800">{item.bookingBranch}</span>

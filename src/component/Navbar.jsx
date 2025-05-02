@@ -20,22 +20,26 @@ const Navbar = () => {
         { name: 'Branch', subOptions: ['Branch Master'] },
         { name: 'Place Master', subOptions: ['City', 'Area', 'State', 'Country', 'District'] },
         { name: 'Truck Details', subOptions: ['Truck Master', 'Truck Driver', 'Truck Owner'] },
-        { name: 'Other', subOptions: null },
+       
       ],
     },
     {
       name: 'Transactions',
       options: [
-        { name: 'Billing', subOptions: ['Create', 'View', 'History'] },
-        { name: 'Payments', subOptions: null },
-        { name: 'Invoices', subOptions: ['Generate', 'List', 'Send'] },
-        { name: 'Expenses', subOptions: ['Add', 'Track', 'Summary'] },
-        { name: 'Refunds', subOptions: null },
-        { name: 'Taxes', subOptions: ['GST', 'VAT', 'Reports'] },
-        { name: 'Ledger', subOptions: ['View', 'Update', 'Export'] },
-        { name: 'Reconciliation', subOptions: ['Bank', 'Cash', 'Accounts'] },
-        { name: 'Budgets', subOptions: ['Create', 'Monitor', 'Adjust'] },
-        { name: 'Forecasts', subOptions: ['Sales', 'Revenue', 'Expenses'] },
+        { name: 'Outward', subOptions: ['LR. Entry','Memo Entry','Crossing Lr','Memo Transfer','Loading Sheet'] },
+        { name: 'Inward', subOptions: ['Memo Receive','Delivery Of Memo','Delivery Of LR',''] },
+        { name: 'Trip Entry', subOptions: null },
+        { name: 'Full Load', subOptions: null },
+        { name: 'Truck Expense', subOptions: null },
+        { name: 'Bank/Cash', subOptions: ['Bank Payment','Bank Receipt', 'Cash Payment', 'Cash Receipt','Contra','Fund Transfer','Fund Receive'] },
+        { name: 'Journal Voucher', subOptions: ['Journal voucher', 'Credit Note', 'Debit Note','Expense Entry'] },
+        { name: 'GST', subOptions: ['GST Expense Entry', 'GST RCM Entry','GST Income Entry','GST Payment','GST Utilization','GST Journal','CN Entry w/o Stock','CN Entry With Stock','DN Entry w/o Stock','DN Entry With Stock'] },
+        { name: 'Quotation', subOptions: null},
+        { name: 'Purchase Order', subOptions: null},
+        { name: 'Sales', subOptions: ['Sales Bill','Trans Bill','Supplementary Bill','Estimate Bill','Freight Bill','Est Transport Bill']},
+
+        { name: 'Inventory', subOptions: ['Stock Inward','Stock Outward','Stock Inward from Truck','Stock Removal Entry'] },
+       
       ],
     },
     {
@@ -53,31 +57,170 @@ const Navbar = () => {
       ],
     },
     {
-      name: 'Utilities',
+      name: "Utilities",
       options: [
-        { name: 'Backup', subOptions: null },
-        { name: 'Restore', subOptions: null },
-        { name: 'Update', subOptions: null },
-        { name: 'Settings', subOptions: null },
-        { name: 'Help', subOptions: null },
-        { name: 'Logout', subOptions: null },
-      ],
+        {
+          name: "User Management",
+          subOptions: [
+           "User Entry", 
+           "User Right", 
+           "Audit Log/User Log", 
+           "Role Template", 
+          ]
+        },
+        {
+          name: "WhatsApp",
+          subOptions: [
+           "WhatsApp Log", 
+           "WhatsApp Setup", 
+          ]
+        },
+        {
+          name: "SMS",
+          subOptions: [
+           "Send Sms", 
+           "Sms Template", 
+           "Sms Log", 
+           "Sms Mask", 
+          ]
+        },
+        {
+          name: "Year End",
+          subOptions: [
+           "New Fin. Year", 
+           "Update Balance", 
+           "Import Back Year Data", 
+          ]
+        },
+        {
+          name: "Data Utility",
+          subOptions: [
+           "Import", 
+           "Export To Telly", 
+          ]
+        },
+        {
+          name: "Havala",
+          subOptions: [
+           "Capital", 
+           "Depreciation", 
+           "Interest", 
+           "Discount/Kasar Entry", 
+           "TDS Calculation", 
+           "Salary", 
+          ]
+        },
+        {
+          name: "Advance Utility",
+          subOptions: [
+           "Account Merge", 
+           "Product Merge", 
+           "City Merge", 
+           "State Merge", 
+           "Voucher Renumber", 
+           "Specification Merge", 
+           "Voucher Print", 
+           "Merge Truck", 
+           "Quick Link", 
+           "Delete Transaction", 
+           "Document Cancellation", 
+           "Copy Branch", 
+          ]
+        },
+        {
+          name: "Personal Diary",
+          subOptions: [
+           "Reminder", 
+           "Label Print", 
+          ]
+        },
+        {
+          name: "System Utility",
+          subOptions: [
+            "Account Effect",
+            "User Fields",
+            "User Auto List",
+            "Report File",
+            "Menu Management",
+            "GST Api Log",
+            "Document List",
+            "Client LR Track",
+            "Report Fields"
+          ]
+        },
+      ]
     },
     {
-      name: 'Setup',
-      options: [
-        { name: 'User', subOptions: null },
-        { name: 'Role', subOptions: null },
-        { name: 'Permission', subOptions: null },
-        { name: 'Audit', subOptions: null },
-        { name: 'Backup', subOptions: null },
-        { name: 'Restore', subOptions: null },
-        { name: 'Update', subOptions: null },
-        { name: 'Settings', subOptions: null },
-        { name: 'Help', subOptions: null },
-        { name: 'Logout', subOptions: null },
-      ],
-    },
+      "name": "Set Up",
+      "options": [
+        {
+          "name": "Sales Setup",
+          "subOptions": [
+            "Sales Invoice Type",
+            "Sale Expense Formula",
+            "Link Sale Expense"
+          ]
+        },
+        {
+          "name": "Purchase Setup",
+          "subOptions": [
+            "Purchase Invoice Type",
+            "Purchase Expense Formula",
+            "Link Purchase Expense"
+          ]
+        },
+        {
+          "name": "Company Setup",
+          "subOptions": null
+        },
+        {
+          "name": "Branch Setup",
+          "subOptions": null
+        },
+        {
+          "name": "Voucher Setup",
+          "subOptions": null
+        },
+        {
+          "name": "Report Setup",
+          "subOptions": null
+        },
+        {
+          "name": "Resource Setup",
+          "subOptions": null
+        },
+        {
+          "name": "Remainder Setup",
+          "subOptions": null
+        },
+        {
+          "name": "SMS Setup",
+          "subOptions": null
+        },
+        {
+          "name": "Scheduler Setup",
+          "subOptions": null
+        },
+        {
+          "name": "Notification Setup",
+          "subOptions": null
+        },
+        {
+          "name": "Email Setup",
+          "subOptions": null
+        },
+        {
+          "name": "Tax Setup",
+          "subOptions": [
+            "Tax Master",
+            "Tax Group",
+            "TCS Master",
+            "TCS Certificate",
+            "TDS Nature Of Payment"
+          ]
+        }
+      ]
+    }
   ];
 
   // Location and Year options
@@ -148,9 +291,9 @@ const Navbar = () => {
   };
 
   return (
-    <div className="px-8 relative z-50 bg-white text-black flex justify-between items-center shadow-lg">
+    <div className="px-8 relative z-50  bg-white text-black flex justify-between items-center shadow-lg">
       {/* Menu Items */}
-      <div className="flex gap-8 font-medium capitalize">
+      <div className="flex gap-5  text-sm font-medium capitalize">
         {menuItems.map((item, index) => (
           <div
             key={item.name}
@@ -171,12 +314,12 @@ const Navbar = () => {
                   >
                     {/* Option with or without sub-options */}
                     {option.subOptions ? (
-                      <div className="px-4 py-2 hover:bg-blue-100 hover:text-black border-b border-white/50 cursor-pointer transition-colors duration-200">
+                      <div className="px-4 py-1 hover:bg-blue-100 hover:text-black border-b border-white/50 cursor-pointer transition-colors duration-200">
                         {option.name}
                       </div>
                     ) : (
                       <div
-                        className="px-4 py-2 hover:bg-blue-100 hover:text-black border-b border-white/50 cursor-pointer transition-colors duration-200"
+                        className="px-4 py-1 hover:bg-blue-100 hover:text-black border-b border-white/50 cursor-pointer transition-colors duration-200"
                         onClick={() => handleNavigation(item.name, option.name)}
                       >
                         {option.name}
@@ -188,7 +331,7 @@ const Navbar = () => {
                         {option.subOptions.map((subOption) => (
                           <div
                             key={subOption}
-                            className="px-4 py-2 hover:bg-blue-100 hover:text-black border-b border-white/50 cursor-pointer transition-colors duration-200"
+                            className="px-4 py-1 hover:bg-blue-100 hover:text-black border-b text-nowrap border-white/50 cursor-pointer transition-colors duration-200"
                             onClick={() => handleNavigation(item.name, option.name, subOption)}
                           >
                             {subOption}
@@ -222,11 +365,11 @@ const Navbar = () => {
             onClick={toggleLocationDropdown}
           ></i>
           {locationDropdown && (
-            <div className="absolute right-0 mt-2 w-48 bg-[#397BD0] backdrop-blur-xl text-white rounded-lg shadow-xl z-10">
+            <div className="absolute right-0 mt-2 w-48 bg-[#397BD0] overflow-hidden backdrop-blur-xl text-white rounded-lg shadow-xl z-10">
               {locations.map((location) => (
                 <div
                   key={location}
-                  className="p-2 text-sm hover:bg-blue-100 hover:text-black border-b border-white/50 cursor-pointer transition-colors duration-200"
+                  className="px-2 py-1 text-sm hover:bg-blue-100 hover:text-black border-b border-white/50 cursor-pointer transition-colors duration-200"
                   onClick={() => handleLocationSelect(location)}
                 >
                   {location}
@@ -243,11 +386,11 @@ const Navbar = () => {
             onClick={toggleYearDropdown}
           ></i>
           {yearDropdown && (
-            <div className="absolute right-0 mt-2 w-48 bg-[#397BD0] backdrop-blur-xl text-white rounded-lg shadow-xl z-10">
+            <div className="absolute overflow-hidden right-0 mt-2 w-48 bg-[#397BD0] backdrop-blur-xl text-white rounded-lg shadow-xl z-10">
               {years.map((year) => (
                 <div
                   key={year}
-                  className="p-2 text-sm hover:bg-blue-100 hover:text-black border-b border-white/50 cursor-pointer transition-colors duration-200"
+                  className="px-2 py-1 text-sm hover:bg-blue-100 hover:text-black border-b border-white/50 cursor-pointer transition-colors duration-200"
                   onClick={() => handleYearSelect(year)}
                 >
                   {year}

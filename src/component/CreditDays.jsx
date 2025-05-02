@@ -104,7 +104,7 @@ const CreditDays = () => {
       <h2 className="text-2xl font-bold text-red-700 mb-5 border-b-4 border-red-200 pb-3">
         Credit Days Exceeded
       </h2>
-      <div className="scroller   rounded-lg">
+      <div className="scroller  rounded-lg">
         <div className="min-w-max">
           <div className="grid grid-cols-6 text-gray-800 font-bold py-3 px-2 bg-red-100 border-b border-red-200 rounded-t-lg relative">
             {columns.map((column) => (
@@ -160,9 +160,9 @@ const CreditDays = () => {
               filteredData.map((item, index) => (
                 <div
                   key={index}
-                  className="grid grid-cols-6 py-3 border-b border-gray-200 hover:bg-red-100 transition duration-300 cursor-pointer animate-fade-in"
+                  className="grid grid-cols-6 py-2 text-sm border-b border-gray-200 hover:bg-red-100 transition duration-300 cursor-pointer animate-fade-in"
                 >
-                  <span className="text-gray-800 font-medium">{item.billNo}</span>
+                  <span className="text-gray-800">{item.billNo}</span>
                   <span className="text-gray-800">{item.billDate}</span>
                   <span className="text-gray-800">${item.billAmount}</span>
                   <span className="text-gray-800">{item.dueDays}</span>
