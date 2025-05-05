@@ -175,13 +175,13 @@ const Container = ({isOpen, setIsOpen}) => {
         <Route path='/transactions/bank/cash/Fund Receive' element={<ListOfFundReceive/>} />  
         <Route path='/transactions/bank/cash/Fund Transfer' element={<ListOfFundTransfer/>} />  
 
-{/*         
+      
         <Route path='/transactions/Journal voucher/Journal voucher' element={<ListOfJournal/>} />  
         <Route path='/transactions/Journal voucher/Credit Note' element={<ListOfCreditNote/>} />  
         <Route path='/transactions/Journal voucher/Debit Note' element={<ListOfDebitNote/>} />  
         <Route path='/transactions/Journal voucher/Expense Entry' element={<ListOfExpense/>} />  
         <Route path='/transactions/Quotation' element={<ListOfQuotation/>} />  
-        <Route path='/transactions/Purchase Order' element={<ListOfPurchaseOrder/>} />  
+        {/* <Route path='/transactions/Purchase Order' element={<ListOfPurchaseOrder/>} />   */}
 
         <Route path='/transactions/gst/GST Journal' element={<GSTJournal/>} />  
         <Route path='/transactions/gst/GST Utilization' element={<GSTUtilization/>} />  
@@ -194,7 +194,7 @@ const Container = ({isOpen, setIsOpen}) => {
         <Route path='/transactions/gst/DN Entry w/o Stock' element={<DebitNoteWithoutStock/>} />  
         <Route path='/transactions/gst/DN Entry With Stock' element={<DebitNoteWithStock/>} />  
 
-        <Route path='/transactions/sales/Sales Bill' element={<ListOfSalesInvoice/>} />  
+        {/* <Route path='/transactions/sales/Sales Bill' element={<ListOfSalesInvoice/>} />  
         <Route path='/transactions/sales/Trans Bill' element={<ListOfTranspoterBill/>} />
         <Route path='/transactions/sales/Estimate Bill' element={<ListOfEstSalesInvoice/>} />  
         <Route path='/transactions/sales/Supplementary Bill' element={<ListOfSupplementaryInvoice/>} />  
@@ -205,8 +205,8 @@ const Container = ({isOpen, setIsOpen}) => {
         <Route path='/transactions/inventory/Stock Outward' element={<StockOutward/>} /> 
         <Route path='/transactions/inventory/Stock Inward from Truck' element={<StockInwardFromTruck/>} /> 
         <Route path='/transactions/inventory/Stock Removal Entry' element={<StockRemovalEntry/>} /> 
-          */}
         
+         */}
     
        
        

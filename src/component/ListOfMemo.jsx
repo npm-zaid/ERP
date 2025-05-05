@@ -24,6 +24,42 @@ const ListOfMemo = () => {
       paid: 50.00,
       narration: 'Test Memo 1',
       memoFreight: 150.00,
+      lrRows: [
+        {
+          centerName: 'Center 1',
+          lrNo: '1001',
+          date: '28/04/2025',
+          packaging: 'Bag',
+          description: 'Sample 1',
+          article: 5,
+          freightBy: 'TBB',
+          fromCity: 'MUMBAI',
+          toCity: 'DELHI',
+          consignee: 'Consignee 1',
+          acWeight: 100,
+          weight: 100,
+          freight: 75,
+        },
+        {
+          centerName: 'Center 1',
+          lrNo: '1002',
+          date: '28/04/2025',
+          packaging: 'Bag',
+          description: 'Sample 1',
+          article: 5,
+          freightBy: 'TBB',
+          fromCity: 'MUMBAI',
+          toCity: 'DELHI',
+          consignee: 'Consignee 2',
+          acWeight: 100,
+          weight: 100,
+          freight: 75,
+        },
+      ],
+      totalArticle: 10,
+      totalAcWeight: 200,
+      totalWeight: 200,
+      totalFreight: 150,
     },
     {
       selected: false,
@@ -46,6 +82,27 @@ const ListOfMemo = () => {
       paid: 100.00,
       narration: 'Test Memo 2',
       memoFreight: 300.00,
+      lrRows: [
+        {
+          centerName: 'Center 2',
+          lrNo: '1003',
+          date: '29/04/2025',
+          packaging: 'Box',
+          description: 'Sample 2',
+          article: 5,
+          freightBy: 'TBB',
+          fromCity: 'DELHI',
+          toCity: 'PUNE',
+          consignee: 'Consignee 3',
+          acWeight: 150,
+          weight: 150,
+          freight: 300,
+        },
+      ],
+      totalArticle: 5,
+      totalAcWeight: 150,
+      totalWeight: 150,
+      totalFreight: 300,
     },
     {
       selected: false,
@@ -68,6 +125,27 @@ const ListOfMemo = () => {
       paid: 75.00,
       narration: 'Test Memo 3',
       memoFreight: 225.00,
+      lrRows: [
+        {
+          centerName: 'Center 3',
+          lrNo: '1004',
+          date: '30/04/2025',
+          packaging: 'Carton',
+          description: 'Sample 3',
+          article: 8,
+          freightBy: 'TBB',
+          fromCity: 'PUNE',
+          toCity: 'BANGALORE',
+          consignee: 'Consignee 4',
+          acWeight: 120,
+          weight: 120,
+          freight: 225,
+        },
+      ],
+      totalArticle: 8,
+      totalAcWeight: 120,
+      totalWeight: 120,
+      totalFreight: 225,
     },
     {
       selected: false,
@@ -90,6 +168,27 @@ const ListOfMemo = () => {
       paid: 150.00,
       narration: 'Test Memo 4',
       memoFreight: 450.00,
+      lrRows: [
+        {
+          centerName: 'Center 4',
+          lrNo: '1005',
+          date: '01/05/2025',
+          packaging: 'Bag',
+          description: 'Sample 4',
+          article: 12,
+          freightBy: 'TBB',
+          fromCity: 'BANGALORE',
+          toCity: 'MUMBAI',
+          consignee: 'Consignee 5',
+          acWeight: 180,
+          weight: 180,
+          freight: 450,
+        },
+      ],
+      totalArticle: 12,
+      totalAcWeight: 180,
+      totalWeight: 180,
+      totalFreight: 450,
     },
     {
       selected: false,
@@ -109,9 +208,30 @@ const ListOfMemo = () => {
       freightBy: 'TBB',
       fromCity: 'MUMBAI',
       toPay: 250.00,
-      paid: '125.00',
+      paid: 125.00,
       narration: 'Test Memo 5',
       memoFreight: 375.00,
+      lrRows: [
+        {
+          centerName: 'Center 5',
+          lrNo: '1006',
+          date: '02/05/2025',
+          packaging: 'Box',
+          description: 'Sample 5',
+          article: 15,
+          freightBy: 'TBB',
+          fromCity: 'MUMBAI',
+          toCity: 'DELHI',
+          consignee: 'Consignee 6',
+          acWeight: 200,
+          weight: 200,
+          freight: 375,
+        },
+      ],
+      totalArticle: 15,
+      totalAcWeight: 200,
+      totalWeight: 200,
+      totalFreight: 375,
     },
     {
       selected: false,
@@ -134,6 +254,27 @@ const ListOfMemo = () => {
       paid: 90.00,
       narration: 'Test Memo 6',
       memoFreight: 270.00,
+      lrRows: [
+        {
+          centerName: 'Center 6',
+          lrNo: '1007',
+          date: '03/05/2025',
+          packaging: 'Carton',
+          description: 'Sample 6',
+          article: 7,
+          freightBy: 'TBB',
+          fromCity: 'DELHI',
+          toCity: 'PUNE',
+          consignee: 'Consignee 7',
+          acWeight: 140,
+          weight: 140,
+          freight: 270,
+        },
+      ],
+      totalArticle: 7,
+      totalAcWeight: 140,
+      totalWeight: 140,
+      totalFreight: 270,
     },
     {
       selected: false,
@@ -156,6 +297,27 @@ const ListOfMemo = () => {
       paid: 110.00,
       narration: 'Test Memo 7',
       memoFreight: 330.00,
+      lrRows: [
+        {
+          centerName: 'Center 7',
+          lrNo: '1008',
+          date: '04/05/2025',
+          packaging: 'Bag',
+          description: 'Sample 7',
+          article: 9,
+          freightBy: 'TBB',
+          fromCity: 'PUNE',
+          toCity: 'BANGALORE',
+          consignee: 'Consignee 8',
+          acWeight: 160,
+          weight: 160,
+          freight: 330,
+        },
+      ],
+      totalArticle: 9,
+      totalAcWeight: 160,
+      totalWeight: 160,
+      totalFreight: 330,
     },
     {
       selected: false,
@@ -178,6 +340,27 @@ const ListOfMemo = () => {
       paid: 140.00,
       narration: 'Test Memo 8',
       memoFreight: 420.00,
+      lrRows: [
+        {
+          centerName: 'Center 8',
+          lrNo: '1009',
+          date: '05/05/2025',
+          packaging: 'Box',
+          description: 'Sample 8',
+          article: 11,
+          freightBy: 'TBB',
+          fromCity: 'BANGALORE',
+          toCity: 'MUMBAI',
+          consignee: 'Consignee 9',
+          acWeight: 170,
+          weight: 170,
+          freight: 420,
+        },
+      ],
+      totalArticle: 11,
+      totalAcWeight: 170,
+      totalWeight: 170,
+      totalFreight: 420,
     },
     {
       selected: false,
@@ -200,6 +383,27 @@ const ListOfMemo = () => {
       paid: 95.00,
       narration: 'Test Memo 9',
       memoFreight: 285.00,
+      lrRows: [
+        {
+          centerName: 'Center 9',
+          lrNo: '1010',
+          date: '06/05/2025',
+          packaging: 'Carton',
+          description: 'Sample 9',
+          article: 6,
+          freightBy: 'TBB',
+          fromCity: 'MUMBAI',
+          toCity: 'DELHI',
+          consignee: 'Consignee 10',
+          acWeight: 130,
+          weight: 130,
+          freight: 285,
+        },
+      ],
+      totalArticle: 6,
+      totalAcWeight: 130,
+      totalWeight: 130,
+      totalFreight: 285,
     },
     {
       selected: false,
@@ -222,6 +426,27 @@ const ListOfMemo = () => {
       paid: 130.00,
       narration: 'Test Memo 10',
       memoFreight: 390.00,
+      lrRows: [
+        {
+          centerName: 'Center 10',
+          lrNo: '1011',
+          date: '07/05/2025',
+          packaging: 'Bag',
+          description: 'Sample 10',
+          article: 14,
+          freightBy: 'TBB',
+          fromCity: 'DELHI',
+          toCity: 'PUNE',
+          consignee: 'Consignee 11',
+          acWeight: 190,
+          weight: 190,
+          freight: 390,
+        },
+      ],
+      totalArticle: 14,
+      totalAcWeight: 190,
+      totalWeight: 190,
+      totalFreight: 390,
     },
   ];
 
@@ -246,112 +471,22 @@ const ListOfMemo = () => {
     { label: 'Paid', field: 'paid' },
     { label: 'Narration', field: 'narration' },
     { label: 'Memo Freight', field: 'memoFreight' },
+    { label: 'Total Article', field: 'totalArticle' },
+    { label: 'Total Ac. Weight', field: 'totalAcWeight' },
+    { label: 'Total Weight', field: 'totalWeight' },
+    { label: 'Total Freight', field: 'totalFreight' },
   ];
 
-  const numericFields = ['article', 'toPay', 'paid', 'memoFreight'];
+  const numericFields = ['article', 'toPay', 'paid', 'memoFreight', 'totalArticle', 'totalAcWeight', 'totalWeight', 'totalFreight'];
 
-  const fieldConfig = {
-    toBranch: {
-      options: [
-        'To Branch 1',
-        'To Branch 2',
-        'To Branch 3',
-        'To Branch 4',
-        'To Branch 5',
-        'To Branch 6',
-        'To Branch 7',
-        'To Branch 8',
-        'To Branch 9',
-        'To Branch 10',
-      ],
-    },
-    vehicle: {
-      options: [
-        'Vehicle 1',
-        'Vehicle 2',
-        'Vehicle 3',
-        'Vehicle 4',
-        'Vehicle 5',
-        'Vehicle 6',
-        'Vehicle 7',
-        'Vehicle 8',
-        'Vehicle 9',
-        'Vehicle 10',
-      ],
-    },
-    driver: {
-      options: [
-        'Driver 1',
-        'Driver 2',
-        'Driver 3',
-        'Driver 4',
-        'Driver 5',
-        'Driver 6',
-        'Driver 7',
-        'Driver 8',
-        'Driver 9',
-        'Driver 10',
-      ],
-    },
-    agent: {
-      options: [
-        'Agent 1',
-        'Agent 2',
-        'Agent 3',
-        'Agent 4',
-        'Agent 5',
-        'Agent 6',
-        'Agent 7',
-        'Agent 8',
-        'Agent 9',
-        'Agent 10',
-      ],
-    },
-    hire: {
-      options: [
-        'Hire 1',
-        'Hire 2',
-        'Hire 3',
-        'Hire 4',
-        'Hire 5',
-        'Hire 6',
-        'Hire 7',
-        'Hire 8',
-        'Hire 9',
-        'Hire 10',
-      ],
-    },
-    cashBank: {
-      options: ['Cash', 'Bank'],
-    },
-    center: {
-      options: [
-        'Center 1',
-        'Center 2',
-        'Center 3',
-        'Center 4',
-        'Center 5',
-        'Center 6',
-        'Center 7',
-        'Center 8',
-        'Center 9',
-        'Center 10',
-      ],
-    },
-    packaging: {
-      options: ['Bag', 'Box', 'Carton'],
-    },
-    freightBy: {
-      options: ['TBB'],
-    },
-    fromCity: {
-      options: ['MUMBAI', 'DELHI', 'PUNE', 'BANGALORE'],
-    },
-  };
+
 
   const windowConfig = {
     initialState: {
-      date: '',
+      id: '',
+      selected: false,
+      audited: false,
+      date: new Date().toLocaleDateString('en-GB').split('/').join('/'),
       memoNo: '',
       toBranch: '',
       vehicle: '',
@@ -365,62 +500,96 @@ const ListOfMemo = () => {
       article: 0,
       freightBy: '',
       fromCity: '',
+      toCity: '',
       toPay: 0,
       paid: 0,
       narration: '',
       memoFreight: 0,
-      kMiter: '',
-      addLr: false,
-      autoAddLr: false,
-      totalLr: 0,
+      lrRows: [
+        {
+          centerName: '',
+          lrNo: '',
+          date: '',
+          packaging: '',
+          description: '',
+          article: 0,
+          freightBy: '',
+          fromCity: '',
+          toCity: '',
+          consignee: '',
+          acWeight: 0,
+          weight: 0,
+          freight: 0,
+        },
+      ],
       totalArticle: 0,
       totalAcWeight: 0,
       totalWeight: 0,
-      freightByArticle: 0,
+      totalFreight: 0,
+      city: '',
+      balance: 0,
+      paymentType: '',
+      advanced: 0,
+      vehicleNo: '',
+      branch: '',
     },
     fieldMapping: (entry) => ({
-      date: entry.date,
-      memoNo: entry.memoNo,
-      toBranch: entry.toBranch,
-      vehicle: entry.vehicle,
-      driver: entry.driver,
-      agent: entry.agent,
-      hire: entry.hire,
-      cashBank: entry.cashBank,
-      center: entry.center,
-      packaging: entry.packaging,
-      description: entry.description,
+      id: entry.id || '',
+      selected: entry.selected || false,
+      audited: entry.audited || false,
+      date: entry.date || '',
+      memoNo: entry.memoNo || '',
+      toBranch: entry.toBranch || '',
+      vehicle: entry.vehicle || '',
+      driver: entry.driver || '',
+      agent: entry.agent || '',
+      hire: entry.hire || '',
+      cashBank: entry.cashBank || '',
+      center: entry.center || '',
+      packaging: entry.packaging || '',
+      description: entry.description || '',
       article: parseInt(entry.article) || 0,
-      freightBy: entry.freightBy,
-      fromCity: entry.fromCity,
+      freightBy: entry.freightBy || '',
+      fromCity: entry.fromCity || '',
+      toCity: entry.toCity || '',
       toPay: parseFloat(entry.toPay) || 0,
       paid: parseFloat(entry.paid) || 0,
-      narration: entry.narration,
+      narration: entry.narration || '',
       memoFreight: parseFloat(entry.memoFreight) || 0,
+      lrRows: entry.lrRows || [],
+      totalArticle: parseInt(entry.totalArticle) || 0,
+      totalAcWeight: parseFloat(entry.totalAcWeight) || 0,
+      totalWeight: parseFloat(entry.totalWeight) || 0,
+      totalFreight: parseFloat(entry.totalFreight) || 0,
+      city: entry.city || '',
+      balance: parseFloat(entry.balance) || 0,
+      paymentType: entry.paymentType || '',
+      advanced: parseFloat(entry.advanced) || 0,
+      vehicleNo: entry.vehicleNo || '',
+      branch: entry.branch || '',
     }),
   };
 
   return (
-    
-      <TableLayout
-        title="List of Memo"
-        columns={columns}
-        initialData={initialData}
-        numericFields={numericFields}
-        fieldConfig={fieldConfig}
-        windowConfig={windowConfig}
-        componentType="memo"
-        showAdd={true}
-        showEdit={true}
-        showView={true}
-        showDelete={true}
-        showRefresh={true}
-        showPrint={true}
-        showAudit={true}
-        showField={true}
-        showExportExcel={true}
-        showExportPDF={true}
-      />
+    <TableLayout
+      title="List of Memo"
+      columns={columns}
+      initialData={initialData}
+      numericFields={numericFields}
+     
+      windowConfig={windowConfig}
+      componentType="memo"
+      showAdd={true}
+      showEdit={true}
+      showView={true}
+      showDelete={true}
+      showRefresh={true}
+      showPrint={true}
+      showAudit={true}
+      showField={true}
+      showExportExcel={true}
+      showExportPDF={true}
+    />
   );
 };
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import TableLayout from './TableLayout';
+import MemoReceiveAddWindow from '../Adding-Screens/MemoReceiveAddWindow';
 
 const ListOfMemoReceive = () => {
   const initialData = [
@@ -238,16 +239,18 @@ const ListOfMemoReceive = () => {
   const windowConfig = {
     initialState: {
       date: '',
-      receiveNo: '',
-      memo: '',
-      items: [
+      memoNo: '',
+      balance: 0,
+      totalFreight: 0,
+      narration: '',
+      lrRows: [
         {
-          center: '',
+          centerName: '',
           lrNo: '',
-          lrDate: '',
+          date: '',
           baleNo: '',
           fromCity: '',
-          city: '',
+          toCity: '',
           consignor: '',
           consignee: '',
           article: 0,
@@ -257,54 +260,54 @@ const ListOfMemoReceive = () => {
           freightBy: '',
         },
       ],
-      narration: '',
-      toPay: 0,
-      paid: 0,
-      consignee: '',
-      consignor: '',
     },
     fieldMapping: (entry) => ({
       date: entry.date,
-      receiveNo: entry.receiveNo,
-      memo: entry.memo,
-      center: entry.items[0].center,
-      lrNo: entry.items[0].lrNo,
-      lrDate: entry.items[0].lrDate,
-      baleNo: entry.items[0].baleNo,
-      fromCity: entry.items[0].fromCity,
-      city: entry.items[0].city,
-      consignor: entry.items[0].consignor,
-      consignee: entry.items[0].consignee,
-      article: parseInt(entry.items[0].article) || 0,
-      shortArt: parseInt(entry.items[0].shortArt) || 0,
-      weight: parseFloat(entry.items[0].weight) || 0,
-      freight: parseFloat(entry.items[0].freight) || 0,
-      freightBy: entry.items[0].freightBy,
+      memoNo: entry.receiveNo,
+      balance: 0,
+      totalFreight: parseFloat(entry.freight) || 0,
+      narration: '',
+      lrRows: [
+        {
+          centerName: entry.center,
+          lrNo: entry.lrNo,
+          date: entry.lrDate,
+          baleNo: entry.baleNo,
+          fromCity: entry.fromCity,
+          toCity: entry.city,
+          consignor: entry.consignor,
+          consignee: entry.consignee,
+          article: parseInt(entry.article) || 0,
+          shortArt: parseInt(entry.shortArt) || 0,
+          weight: parseFloat(entry.weight) || 0,
+          freight: parseFloat(entry.freight) || 0,
+          freightBy: entry.freightBy,
+        },
+      ],
     }),
+    
   };
 
   return (
-    
-      <TableLayout
-        title="List of Memo Receive"
-        columns={columns}
-        initialData={initialData}
-        numericFields={numericFields}
-        fieldConfig={fieldConfig}
-        windowConfig={windowConfig}
-        componentType="memoreceive"
-        showAdd={true}
-        showEdit={true}
-        showView={true}
-        showDelete={true}
-        showRefresh={true}
-        showPrint={true}
-        showAudit={true}
-        showField={true}
-        showExportExcel={true}
-        showExportPDF={true}
-      />
-
+    <TableLayout
+      title="List of Memo Receive"
+      columns={columns}
+      initialData={initialData}
+      numericFields={numericFields}
+      fieldConfig={fieldConfig}
+      windowConfig={windowConfig}
+      componentType="memoreceive"
+      showAdd={true}
+      showEdit={true}
+      showView={true}
+      showDelete={true}
+      showRefresh={true}
+      showPrint={true}
+      showAudit={true}
+      showField={true}
+      showExportExcel={true}
+      showExportPDF={true}
+    />
   );
 };
 
