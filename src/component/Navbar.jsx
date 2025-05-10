@@ -64,7 +64,7 @@ const Navbar = () => {
           subOptions: [
            "User Entry", 
            "User Right", 
-           "Audit Log/User Log", 
+           "User Log", 
            "Role Template", 
           ]
         },
@@ -301,7 +301,7 @@ const Navbar = () => {
             onMouseEnter={() => handleDropdown(index)}
             onMouseLeave={() => setActiveDropdown(null)}
           >
-            <h1 className="cursor-pointer py-5">{item.name}</h1>
+            <h1 className="cursor-pointer py-5 uppercase hover:tracking-widest transitionq-all duration-200  text-zinc-800">{item.name}</h1>
             {/* Dropdown */}
             {activeDropdown === index && (
               <div className="absolute -left-5 top-14 w-48 bg-[#397BD0] backdrop-blur-xl text-white rounded-lg shadow-xl z-10">

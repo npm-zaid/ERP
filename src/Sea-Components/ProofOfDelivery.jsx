@@ -466,12 +466,9 @@ const ProofOfDelivery = () => {
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-[#397BD0] uppercase tracking-wider text-xl text-white py-2 rounded-lg shadow-md active:scale-95 transition-all duration-300 hover:bg-[#2e62a8]"
-          >
-            Submit
-          </button>
+          
+<button className="btn-donate w-full active:scale-90 tracking-widest font-bold text-xl p-4">SUBMIT NOW</button>
+
         </form>
       </div>
     </div>

@@ -1,8 +1,7 @@
 import React from 'react';
 import TableLayout from './TableLayout';
-import MemoReceiveAddWindow from '../Adding-Screens/MemoReceiveAddWindow';
 
-const ListOfMemoReceive = () => {
+const ListOfMemoReceived = () => {
   const initialData = [
     {
       selected: false,
@@ -138,7 +137,7 @@ const ListOfMemoReceive = () => {
       city: 'PUNE',
       consignor: 'STU Corp',
       consignee: 'EFG Ltd',
-      article: '2',
+      article: 2,
       shortArt: 0,
       weight: 40.00,
       freight: 600.00,
@@ -233,13 +232,29 @@ const ListOfMemoReceive = () => {
     center: { options: ['HEAD OFFICE', 'MUMBAI BRANCH', 'DELHI BRANCH'] },
     fromCity: { options: ['MUMBAI', 'DELHI', 'PUNE', 'BANGALORE'] },
     toCity: { options: ['AHMEDABAD', 'KOTA', 'JAIPUR', 'SURAT', 'PUNE'] },
-    freightBy: { options: ['TBB'] },
+    freightBy: { options: ['TBB', 'To Pay', 'Paid', 'Consignee', 'Consignor'] },
   };
 
   const windowConfig = {
     initialState: {
-      date: '',
-      memoNo: '',
+      selected: false,
+      audited: false,
+      date: new Date().toLocaleDateString('en-GB').split('/').join('/'),
+      receiveNo: '',
+      memo: '',
+      center: '',
+      lrNo: '',
+      lrDate: '',
+      baleNo: '',
+      fromCity: '',
+      city: '',
+      consignor: '',
+      consignee: '',
+      article: 0,
+      shortArt: 0,
+      weight: 0,
+      freight: 0,
+      freightBy: '',
       balance: 0,
       totalFreight: 0,
       narration: '',
@@ -261,31 +276,33 @@ const ListOfMemoReceive = () => {
         },
       ],
     },
-    fieldMapping: (entry) => ({
-      date: entry.date,
-      memoNo: entry.receiveNo,
-      balance: 0,
-      totalFreight: parseFloat(entry.freight) || 0,
-      narration: '',
-      lrRows: [
-        {
-          centerName: entry.center,
-          lrNo: entry.lrNo,
-          date: entry.lrDate,
-          baleNo: entry.baleNo,
-          fromCity: entry.fromCity,
-          toCity: entry.city,
-          consignor: entry.consignor,
-          consignee: entry.consignee,
-          article: parseInt(entry.article) || 0,
-          shortArt: parseInt(entry.shortArt) || 0,
-          weight: parseFloat(entry.weight) || 0,
-          freight: parseFloat(entry.freight) || 0,
-          freightBy: entry.freightBy,
-        },
-      ],
-    }),
-    
+    fieldMapping: (entry) => {
+      const firstLrRow = entry.lrRows && entry.lrRows.length > 0 ? entry.lrRows[0] : {};
+      return {
+        selected: entry.selected || false,
+        audited: entry.audited || false,
+        date: entry.date || '',
+        receiveNo: entry.memoNo || entry.receiveNo || '',
+        memo: entry.memo || '',
+        center: firstLrRow.centerName || entry.center || '',
+        lrNo: firstLrRow.lrNo || entry.lrNo || '',
+        lrDate: firstLrRow.date || entry.lrDate || '',
+        baleNo: firstLrRow.baleNo || entry.baleNo || '',
+        fromCity: firstLrRow.fromCity || entry.fromCity || '',
+        city: firstLrRow.toCity || entry.city || '',
+        consignor: firstLrRow.consignor || entry.consignor || '',
+        consignee: firstLrRow.consignee || entry.consignee || '',
+        article: parseInt(firstLrRow.article) || parseInt(entry.article) || 0,
+        shortArt: parseInt(firstLrRow.shortArt) || parseInt(entry.shortArt) || 0,
+        weight: parseFloat(firstLrRow.weight) || parseFloat(entry.weight) || 0,
+        freight: parseFloat(firstLrRow.freight) || parseFloat(entry.freight) || parseFloat(entry.totalFreight) || 0,
+        freightBy: firstLrRow.freightBy || entry.freightBy || '',
+        balance: parseFloat(entry.balance) || 0,
+        totalFreight: parseFloat(entry.totalFreight) || 0,
+        narration: entry.narration || '',
+        lrRows: entry.lrRows || [],
+      };
+    },
   };
 
   return (
@@ -311,4 +328,4 @@ const ListOfMemoReceive = () => {
   );
 };
 
-export default ListOfMemoReceive;
+export default ListOfMemoReceived;

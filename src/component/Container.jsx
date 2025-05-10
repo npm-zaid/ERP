@@ -92,6 +92,24 @@ import StockOutward from './Navbar/StockOutward'
 import StockInwardFromTruck from './Navbar/StockInwardFromTruck'
 import StockRemovalEntry from './Navbar/StockRemovalEntry'
 
+// Utilities
+import ListOfUser from './Navbar/ListOfUser'
+import UserLog from './Navbar/UserLog'
+import ListOfRole from './Navbar/ListOfRole'
+import WhatsAppLog from './Navbar/WhatsAppLog'
+import SmsLog from './Navbar/SmsLog'
+import SmsMask from './Navbar/SmsMask'
+import ExportToTelly from './Navbar/ExportToTelly'
+import SalaryCalculation from './Navbar/SalaryCalculation'
+import Reminder from './Navbar/Reminder'
+import LabelPrint from './Navbar/LabelPrint'
+import UserField from './Navbar/UserField'
+import AutoDataBox from './Navbar/AutoDataBox'
+import ReportFileMaster from './Navbar/ReportFileMaster'
+import MenuManagement from './Navbar/MenuManagement'
+import GSTAPILog from './Navbar/GSTAPILog'
+import DocumentList from './Navbar/DocumentList'
+
 
 
 
@@ -181,7 +199,7 @@ const Container = ({isOpen, setIsOpen}) => {
         <Route path='/transactions/Journal voucher/Debit Note' element={<ListOfDebitNote/>} />  
         <Route path='/transactions/Journal voucher/Expense Entry' element={<ListOfExpense/>} />  
         <Route path='/transactions/Quotation' element={<ListOfQuotation/>} />  
-        {/* <Route path='/transactions/Purchase Order' element={<ListOfPurchaseOrder/>} />   */}
+        <Route path='/transactions/Purchase Order' element={<ListOfPurchaseOrder/>} />   
 
         <Route path='/transactions/gst/GST Journal' element={<GSTJournal/>} />  
         <Route path='/transactions/gst/GST Utilization' element={<GSTUtilization/>} />  
@@ -194,7 +212,7 @@ const Container = ({isOpen, setIsOpen}) => {
         <Route path='/transactions/gst/DN Entry w/o Stock' element={<DebitNoteWithoutStock/>} />  
         <Route path='/transactions/gst/DN Entry With Stock' element={<DebitNoteWithStock/>} />  
 
-        {/* <Route path='/transactions/sales/Sales Bill' element={<ListOfSalesInvoice/>} />  
+        <Route path='/transactions/sales/Sales Bill' element={<ListOfSalesInvoice/>} />  
         <Route path='/transactions/sales/Trans Bill' element={<ListOfTranspoterBill/>} />
         <Route path='/transactions/sales/Estimate Bill' element={<ListOfEstSalesInvoice/>} />  
         <Route path='/transactions/sales/Supplementary Bill' element={<ListOfSupplementaryInvoice/>} />  
@@ -205,14 +223,24 @@ const Container = ({isOpen, setIsOpen}) => {
         <Route path='/transactions/inventory/Stock Outward' element={<StockOutward/>} /> 
         <Route path='/transactions/inventory/Stock Inward from Truck' element={<StockInwardFromTruck/>} /> 
         <Route path='/transactions/inventory/Stock Removal Entry' element={<StockRemovalEntry/>} /> 
-        
-         */}
-    
-       
-       
 
+        <Route path='/Utilities/User Management/User Entry' element={<ListOfUser/>}></Route>
+        <Route path='/Utilities/User Management/User Log' element={<UserLog/>}></Route>
+        <Route path='/Utilities/User Management/Role Template' element={<ListOfRole/>}></Route>
+        <Route path='/Utilities/WhatsApp/WhatsApp Log' element={<WhatsAppLog/>}></Route>
+        {/* <Route path='/Utilities/SMS/SMS Log' element={<SmsLog/>}></Route>
+        <Route path='/Utilities/SMS/SMS Mask' element={<SmsMask/>}></Route>
+        <Route path='/Utilities/Data Utility/Export To Telly' element={<ExportToTelly/>}></Route>
+        <Route path='/Utilities/Havala/Salary' element={<SalaryCalculation/>}></Route>
+        <Route path='/Utilities/Personal Diary/Reminder' element={<Reminder/>}></Route>
+        <Route path='/Utilities/Personal Diary/Label Print' element={<LabelPrint/>}></Route>
+        <Route path='/Utilities/System Utility/User Fields' element={<UserField/>}></Route> 
+        <Route path='/Utilities/System Utility/User Auto List' element={<AutoDataBox/>}></Route>   
+        <Route path='/Utilities/System Utility/Report File' element={<ReportFileMaster/>}></Route>     
+        <Route path='/Utilities/System Utility/Menu Management' element={<MenuManagement/>}></Route>  
+        <Route path='/Utilities/System Utility/GST Api Log' element={<GSTAPILog/>}></Route>  
+        <Route path='/Utilities/System Utility/Document List' element={<DocumentList/>}></Route>    */}
 
-      
         {/* profile */}
         <Route path="/profile" element={<ProfileCard />} />
         </Routes>

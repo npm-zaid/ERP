@@ -1,22 +1,83 @@
 import React, { useState } from 'react';
-import LRSelectionPopup from './LRSelectionPopup';
 
-const MemoReceiveAddWindow = ({ newEntry, setNewEntry, handleModalSubmit, modal, isEditMode }) => {
+const DeliveryAddWindow = ({ newEntry, setNewEntry, handleModalSubmit, modal, isEditMode }) => {
   const [showLrModal, setShowLrModal] = useState(false);
   const [selectedLrs, setSelectedLrs] = useState([]);
 
+  const availableLrs = [
+    {
+      centerName: "RAJ",
+      lrNo: "17236",
+      date: "02/05/2025",
+      baleNo: "B001",
+      packaging: "BAG",
+      article: 2,
+      shortArt: 0,
+      freightBy: "To Pay",
+      fromCity: "RAJKOT",
+      toCity: "AHMEDABAD",
+      consignor: "SHREE LOGISTICS",
+      consignorGstno: "GSTIN1234567890",
+      consignee: "K. Miter",
+      consigneeGstno: "GSTIN0987654321",
+      weight: 200,
+      freight: 4000,
+      subTotal: 4000
+    },
+    {
+      centerName: "RAJ",
+      lrNo: "17237",
+      date: "03/05/2025",
+      baleNo: "B002",
+      packaging: "BOX",
+      article: 1,
+      shortArt: 0,
+      freightBy: "Paid",
+      fromCity: "SURAT",
+      toCity: "PUNE",
+      consignor: "AJAY TRANSPORT",
+      consignorGstno: "GSTIN4567891230",
+      consignee: "RAMESH & CO",
+      consigneeGstno: "GSTIN7891234560",
+      weight: 150,
+      freight: 3000,
+      subTotal: 3000
+    },
+    {
+      centerName: "KOTA",
+      lrNo: "17238",
+      date: "04/05/2025",
+      baleNo: "B003",
+      packaging: "CARTON",
+      article: 3,
+      shortArt: 1,
+      freightBy: "Consignee",
+      fromCity: "KOTA",
+      toCity: "MUMBAI",
+      consignor: "KUMAR TRANSPORT",
+      consignorGstno: "GSTIN3216549870",
+      consignee: "FASHION HUB",
+      consigneeGstno: "GSTIN6549873210",
+      weight: 300,
+      freight: 6000,
+      subTotal: 6000
+    }
+  ];
+
   const updateCalculations = (updatedEntry) => {
     const lrRows = updatedEntry.lrRows || [];
-    const totalFreight = lrRows.reduce((sum, row) => sum + (parseFloat(row.freight) || 0), 0);
+    const totalArticle = lrRows.reduce((sum, row) => sum + (parseInt(row.article) || 0), 0);
+    const totalWeight = lrRows.reduce((sum, row) => sum + (parseFloat(row.weight) || 0), 0);
+    const amount = parseFloat(updatedEntry.amount) || 0;
+    const advance = parseFloat(updatedEntry.advance) || 0;
+    const advance2 = parseFloat(updatedEntry.advance2) || 0;
+    const balance = amount - (advance + advance2);
+
     return {
       ...updatedEntry,
-      totalFreight: totalFreight,
-      totalArticles: lrRows.reduce((sum, row) => sum + (parseInt(row.article) || 0), 0),
-      totalWeight: lrRows.reduce((sum, row) => sum + (parseFloat(row.weight) || 0), 0),
-      totalShortArt: lrRows.reduce((sum, row) => sum + (parseInt(row.shortArt) || 0), 0),
-      toPay: lrRows.reduce((sum, row) => row.freightBy === 'To Pay' ? sum + (parseFloat(row.freight) || 0) : sum, 0),
-      paid: lrRows.reduce((sum, row) => row.freightBy === 'Paid' ? sum + (parseFloat(row.freight) || 0) : sum, 0),
-      memoFreight: totalFreight,
+      totalArticle,
+      totalWeight,
+      balance: balance >= 0 ? balance : 0,
     };
   };
 
@@ -41,7 +102,7 @@ const MemoReceiveAddWindow = ({ newEntry, setNewEntry, handleModalSubmit, modal,
       const updatedEntry = {
         ...prev,
         lrRows: [
-          ...prev.lrRows,
+          ...(prev.lrRows || []),
           {
             centerName: '',
             lrNo: '',
@@ -71,10 +132,10 @@ const MemoReceiveAddWindow = ({ newEntry, setNewEntry, handleModalSubmit, modal,
     });
   };
 
-  const handleLrSelect = (lr) => {
+  const handleLrSelection = (lr) => {
     setSelectedLrs((prev) =>
-      prev.some((item) => item.lrNo === lr.lrNo)
-        ? prev.filter((item) => item.lrNo !== lr.lrNo)
+      prev.some(item => item.lrNo === lr.lrNo)
+        ? prev.filter(item => item.lrNo !== lr.lrNo)
         : [...prev, lr]
     );
   };
@@ -85,20 +146,30 @@ const MemoReceiveAddWindow = ({ newEntry, setNewEntry, handleModalSubmit, modal,
         centerName: lr.centerName,
         lrNo: lr.lrNo,
         date: lr.date,
-        baleNo: lr.baleNo || '',
+        baleNo: lr.baleNo,
         fromCity: lr.fromCity,
         toCity: lr.toCity,
         consignor: lr.consignor,
         consignee: lr.consignee,
         article: lr.article,
-        shortArt: lr.shortArt || 0,
+        shortArt: lr.shortArt,
         weight: lr.weight,
         freight: lr.freight,
         freightBy: lr.freightBy,
       }));
       const updatedEntry = {
         ...prev,
-        lrRows: [...prev.lrRows, ...newLrRows],
+        lrRows: [...(prev.lrRows || []), ...newLrRows],
+        fromBranch: newLrRows[0]?.toCity || prev.fromBranch,
+        consigner: newLrRows[0]?.consignor || prev.consigner,
+        consignee: newLrRows[0]?.consignee || prev.consignee,
+        consignerGSTNO: newLrRows[0]?.consignorGstno || prev.consignerGSTNO,
+        consigneeGSTNO: newLrRows[0]?.consigneeGstno || prev.consigneeGSTNO,
+        pack: newLrRows[0]?.packaging || prev.pack,
+        article: newLrRows[0]?.article || prev.article,
+        weight: newLrRows[0]?.weight || prev.weight,
+        amount: newLrRows[0]?.freight || prev.amount,
+        description: newLrRows[0] ? `LR from ${newLrRows[0].fromCity} to ${newLrRows[0].toCity}` : prev.description,
       };
       return updateCalculations(updatedEntry);
     });
@@ -197,7 +268,7 @@ const MemoReceiveAddWindow = ({ newEntry, setNewEntry, handleModalSubmit, modal,
         </button>
       </div>
 
-      {/* Receipt Details Section */}
+      {/* Delivery Details Section */}
       <div className="bg-gray-200/60 p-2 rounded-lg mb-4">
         <div className="grid grid-cols-5 gap-3">
           <div>
@@ -208,57 +279,84 @@ const MemoReceiveAddWindow = ({ newEntry, setNewEntry, handleModalSubmit, modal,
             })}
           </div>
           <div>
-            {renderInputField('memoNo', newEntry.memoNo, { 
-              tooltip: 'Enter receipt number (e.g., RECXXX)'
+            {renderInputField('deliveryNo', newEntry.deliveryNo, { 
+              type: 'text',
+             
             })}
           </div>
           <div>
-            {renderInputField('driver', newEntry.driver, { 
-              type: 'dropdown', 
-              options: ['', 'MAHESHBHAI', 'RAJESH', 'SANJAY'] 
+            {renderInputField('type', newEntry.type, {
+              type: 'dropdown',
+              options: ['Standard', 'Express'],
             })}
           </div>
           <div>
-            {renderInputField('agent', newEntry.agent, { 
-              type: 'dropdown', 
-              options: ['', 'AJAY TRANSPORT', 'SHREE LOGISTICS', 'KUMAR TRANSPORT'] 
+            {renderInputField('party', newEntry.party, {
+              type: 'dropdown',
+              options: [
+                'ABC TRANSPORT',
+                'ACF',
+                'ACM',
+                'ACM LOGISTICS',
+                'AJAY TRANSPORT',
+                'AK TRANSPORT',
+                'ANAND',
+                'ANMOL TRANPORT',
+                'ASHIRWAD TRANSPORT CO.',
+                'ASK TRANSPORT',
+                'BASUDEV TRANSPORT',
+              ],
             })}
           </div>
           <div>
-            {renderInputField('branch', newEntry.branch, { 
-              type: 'dropdown', 
-              options: ['', '7', '8', '9'] 
+            {renderInputField('fromBranch', newEntry.fromBranch, {
+              type: 'dropdown',
+              options: [
+                'MUMBAI',
+                'AHMEDABAD',
+                'DELHI',
+                'PUNE',
+                'BANGALORE',
+                'HYDERABAD',
+                'KOLKATA',
+                'CHENNAI',
+                'SURAT',
+                'NAGPUR',
+              ],
             })}
           </div>
         </div>
       </div>
 
-      {/* Route Information Section */}
+      {/* Party Information Section */}
       <div className="bg-gray-200/60 p-2 rounded-lg mb-4">
         <div className="grid grid-cols-5 gap-3">
           <div>
-            {renderInputField('fromCity', newEntry.fromCity, { 
-              type: 'dropdown', 
-              options: ['', 'KOTA', 'RAJKOT', 'AHMEDABAD'] 
+            {renderInputField('partyAddress', newEntry.partyAddress, { type: 'textarea' })}
+          </div>
+          <div>
+            {renderInputField('hireAccount', newEntry.hireAccount, {
+              type: 'dropdown',
+              options: ['ABC TRANSPORT', 'AJAY TRANSPORT'],
             })}
           </div>
           <div>
-            {renderInputField('toCity', newEntry.toCity, { 
-              type: 'dropdown', 
-              options: ['', 'K. Miter', 'SURAT', 'PUNE'] 
+            {renderInputField('hire', newEntry.hire, {
+              type: 'dropdown',
+              options: ['Hire 1', 'Hire 2'],
             })}
           </div>
           <div>
-            {renderInputField('vehicleNo', newEntry.vehicleNo)}
-          </div>
-          <div>
-            {renderInputField('paymentType', newEntry.paymentType, { 
-              type: 'dropdown', 
-              options: ['', 'Cash/Bank', 'Credit'] 
+            {renderInputField('account', newEntry.account, {
+              type: 'dropdown',
+              options: ['Account 1', 'Account 2'],
             })}
           </div>
           <div>
-            {renderInputField('advanced', newEntry.advanced, { type: 'number' })}
+            {renderInputField('labour', newEntry.labour, {
+              type: 'dropdown',
+              options: ['Labour 1', 'Labour 2'],
+            })}
           </div>
         </div>
       </div>
@@ -443,100 +541,236 @@ const MemoReceiveAddWindow = ({ newEntry, setNewEntry, handleModalSubmit, modal,
         </div>
       </div>
 
-      {/* Summary Section */}
+      {/* Consignment Details Section */}
       <div className="bg-gray-200/60 p-2 rounded-lg mb-4">
-        <div className="grid grid-cols-4 gap-3">
+        <div className="grid grid-cols-5 gap-3">
           <div>
-            {renderInputField('city', newEntry.city)}
+            {renderInputField('consigner', newEntry.consigner, { type: 'text' })}
           </div>
           <div>
-            {renderInputField('totalWeight', (newEntry.totalWeight ?? 0).toFixed(2), { type: 'number', readOnly: true })}
+            {renderInputField('consignee', newEntry.consignee, { type: 'text' })}
           </div>
           <div>
-            {renderInputField('totalArticles', newEntry.totalArticles ?? 0, { type: 'number', readOnly: true })}
+            {renderInputField('consignerGSTNO', newEntry.consignerGSTNO, { type: 'text' })}
           </div>
           <div>
-            {renderInputField('totalFreight', (newEntry.totalFreight ?? 0).toFixed(2), { type: 'number', readOnly: true })}
+            {renderInputField('consigneeGSTNO', newEntry.consigneeGSTNO, { type: 'text' })}
+          </div>
+          <div>
+            {renderInputField('pack', newEntry.pack, { type: 'text' })}
           </div>
         </div>
       </div>
 
-      {/* Totals Section */}
+      {/* Freight Details Section */}
       <div className="bg-gray-200/60 p-2 rounded-lg mb-4">
-        <div className="grid grid-cols-4 gap-3">
-          <div></div>
+        <div className="grid grid-cols-5 gap-3">
           <div>
-            {renderInputField('totalArticles', newEntry.totalArticles ?? 0, { type: 'number', readOnly: true })}
+            {renderInputField('description', newEntry.description, { type: 'textarea' })}
           </div>
           <div>
-            {renderInputField('totalShortArt', newEntry.totalShortArt ?? 0, { type: 'number', readOnly: true })}
+            {renderInputField('article', newEntry.article, { type: 'number' })}
           </div>
           <div>
-            {renderInputField('totalWeight', (newEntry.totalWeight ?? 0).toFixed(2), { type: 'number', readOnly: true })}
+            {renderInputField('weight', newEntry.weight, { type: 'number' })}
+          </div>
+          <div>
+            {renderInputField('rate', newEntry.rate, { type: 'number' })}
+          </div>
+          <div>
+            {renderInputField('freightOn', newEntry.freightOn, {
+              type: 'dropdown',
+              options: ['FreightON'],
+            })}
           </div>
         </div>
       </div>
 
-      {/* Freight Breakdown Section */}
+      {/* Payment Details Section */}
       <div className="bg-gray-200/60 p-2 rounded-lg mb-4">
-        <div className="grid grid-cols-3 gap-3 mb-3">
-          <div></div>
+        <div className="grid grid-cols-5 gap-3">
           <div>
-            {renderInputField('toPay', (newEntry.toPay ?? 0).toFixed(2), { type: 'number', readOnly: true })}
+            {renderInputField('cashBank', newEntry.cashBank, {
+              type: 'dropdown',
+              options: ['CASH', 'BANK'],
+            })}
           </div>
           <div>
-            {renderInputField('paid', (newEntry.paid ?? 0).toFixed(2), { type: 'number', readOnly: true })}
+            {renderInputField('advance', newEntry.advance, { type: 'number' })}
+          </div>
+          <div>
+            {renderInputField('cashBank2', newEntry.cashBank2, {
+              type: 'dropdown',
+              options: ['CASH', 'BANK'],
+            })}
+          </div>
+          <div>
+            {renderInputField('advance2', newEntry.advance2, { type: 'number' })}
+          </div>
+          <div>
+            {renderInputField('balance', newEntry.balance, { type: 'number', readOnly: true })}
           </div>
         </div>
-        <div className="grid grid-cols-3 gap-3">
-          <div></div>
+      </div>
+
+      {/* Additional Charges Section */}
+      <div className="bg-gray-200/60 p-2 rounded-lg mb-4">
+        <div className="grid grid-cols-5 gap-3">
           <div>
-            {renderInputField('consigneeFreight', (newEntry.lrRows || []).reduce((sum, row) => row.freightBy === 'Consignee' ? sum + (parseFloat(row.freight) || 0) : sum, 0).toFixed(2), { type: 'number', readOnly: true })}
+            {renderInputField('amount', newEntry.amount, { type: 'number' })}
           </div>
           <div>
-            {renderInputField('consignorFreight', (newEntry.lrRows || []).reduce((sum, row) => row.freightBy === 'Consignor' ? sum + (parseFloat(row.freight) || 0) : sum, 0).toFixed(2), { type: 'number', readOnly: true })}
+            {renderInputField('preRate', newEntry.preRate, { type: 'number' })}
+          </div>
+          <div>
+            {renderInputField('totalArticle', newEntry.totalArticle ?? 0, { type: 'number', readOnly: true })}
+          </div>
+          <div>
+            {renderInputField('totalWeight', newEntry.totalWeight ?? 0, { type: 'number', readOnly: true })}
+          </div>
+          <div>
+            {renderInputField('hamali', newEntry.hamali, { type: 'number' })}
+          </div>
+        </div>
+      </div>
+
+      {/* Delivery Charges Section */}
+      <div className="bg-gray-200/60 p-2 rounded-lg mb-4">
+        <div className="grid grid-cols-5 gap-3">
+          <div>
+            {renderInputField('serviceCharge', newEntry.serviceCharge, { type: 'number' })}
+          </div>
+          <div>
+            {renderInputField('discountKasar', newEntry.discountKasar, { type: 'number' })}
+          </div>
+          <div>
+            {renderInputField('deliveryFreight', newEntry.deliveryFreight, { type: 'number' })}
+          </div>
+          <div>
+            {renderInputField('deliveryType', newEntry.deliveryType, {
+              type: 'dropdown',
+              options: ['Type 1', 'Type 2'],
+            })}
+          </div>
+          <div>
+            {renderInputField('cashType', newEntry.cashType, {
+              type: 'dropdown',
+              options: ['CASH ON HAND'],
+            })}
           </div>
         </div>
       </div>
 
       {/* Additional Information Section */}
       <div className="bg-gray-200/60 p-2 rounded-lg mb-4">
-        <div className="grid grid-cols-3 gap-3">
-          <div></div>
-          <div></div>
+        <div className="grid grid-cols-5 gap-3">
           <div>
-            {renderInputField('memoFreight', (newEntry.memoFreight ?? 0).toFixed(2), { type: 'number', readOnly: true })}
+            {renderInputField('deliveryAt', newEntry.deliveryAt, { type: 'text' })}
           </div>
-        </div>
-        <div className="grid grid-cols-3 gap-3 mt-3">
-          <div></div>
-          <div></div>
           <div>
-            {renderInputField('narration', newEntry.narration, { type: 'textarea' })}
+            {renderInputField('note', newEntry.note, { type: 'textarea' })}
           </div>
-        </div>
-        <div className="grid grid-cols-3 gap-3 mt-3">
           <div></div>
           <div></div>
-          <div>
-            {renderInputField('balance', newEntry.balance || '0', { type: 'number', readOnly: true })}
-          </div>
+          <div></div>
         </div>
       </div>
-      {/* LR Selection Popup */}
-      <LRSelectionPopup
-        isOpen={showLrModal}
-        onClose={() => {
-          setShowLrModal(false);
-          setSelectedLrs([]);
-        }}
-        onSelect={handleLrSelect}
-        multiple={true}
-        onConfirm={addSelectedLrs}
-        selectedLrs={selectedLrs}
-      />
+
+      {/* Save & Close Button */}
+      <div className="flex justify-end mt-4">
+        <button
+          onClick={handleSubmit}
+          className="px-6 py-2 bg-green-600 text-white text-[13px] font-medium rounded-md shadow-sm hover:bg-green-700 transition-all duration-200 flex items-center space-x-1"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          <span>Save & Close</span>
+        </button>
+      </div>
+
+      {/* LR Selection Modal */}
+      {showLrModal && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 transition-opacity duration-300">
+          <div className="bg-white rounded-xl p-5 w-full max-w-6xl shadow-2xl max-h-[90vh] flex flex-col">
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">Select LRs</h3>
+            <div className="flex-grow overflow-y-auto">
+              <table className="w-full border-collapse text-[12px]">
+                <thead className="sticky top-0 bg-gray-50">
+                  <tr className="border-b border-gray-200">
+                    <th className="p-2 text-left font-medium text-gray-600">Select</th>
+                    <th className="p-2 text-left font-medium text-gray-600">Center</th>
+                    <th className="p-2 text-left font-medium text-gray-600">LR No</th>
+                    <th className="p-2 text-left font-medium text-gray-600">Date</th>
+                    <th className="p-2 text-left font-medium text-gray-600">Bale No</th>
+                    <th className="p-2 text-left font-medium text-gray-600">From City</th>
+                    <th className="p-2 text-left font-medium text-gray-600">To City</th>
+                    <th className="p-2 text-left font-medium text-gray-600">Consignor</th>
+                    <th className="p-2 text-left font-medium text-gray-600">GSTNO</th>
+                    <th className="p-2 text-left font-medium text-gray-600">Consignee</th>
+                    <th className="p-2 text-left font-medium text-gray-600">GSTNO</th>
+                    <th className="p-2 text-left font-medium text-gray-600">Article</th>
+                    <th className="p-2 text-left font-medium text-gray-600">Short Art.</th>
+                    <th className="p-2 text-left font-medium text-gray-600">Weight</th>
+                    <th className="p-2 text-left font-medium text-gray-600">Freight</th>
+                    <th className="p-2 text-left font-medium text-gray-600">Freight By</th>
+                    <th className="p-2 text-left font-medium text-gray-600">SubTotal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {availableLrs.map((lr) => (
+                    <tr 
+                      key={lr.lrNo} 
+                      className={`border-b border-gray-100 ${availableLrs.indexOf(lr) % 2 === 0 ? 'bg-gray-50' : 'bg-white'} hover:bg-blue-50 transition-colors duration-200`}
+                    >
+                      <td className="p-2">
+                        <input
+                          type="checkbox"
+                          checked={selectedLrs.some(item => item.lrNo === lr.lrNo)}
+                          onChange={() => handleLrSelection(lr)}
+                          className="h-4 w-4 text-blue-600 focus:ring-blue-400 rounded border-gray-300"
+                        />
+                      </td>
+                      <td className="p-2 text-gray-700">{lr.centerName}</td>
+                      <td className="p-2 text-gray-700">{lr.lrNo}</td>
+                      <td className="p-2 text-gray-700">{lr.date}</td>
+                      <td className="p-2 text-gray-700">{lr.baleNo}</td>
+                      <td className="p-2 text-gray-700">{lr.fromCity}</td>
+                      <td className="p-2 text-gray-700">{lr.toCity}</td>
+                      <td className="p-2 text-gray-700">{lr.consignor}</td>
+                      <td className="p-2 text-gray-700">{lr.consignorGstno}</td>
+                      <td className="p-2 text-gray-700">{lr.consignee}</td>
+                      <td className="p-2 text-gray-700">{lr.consigneeGstno}</td>
+                      <td className="p-2 text-gray-700">{lr.article}</td>
+                      <td className="p-2 text-gray-700">{lr.shortArt}</td>
+                      <td className="p-2 text-gray-700">{lr.weight}</td>
+                      <td className="p-2 text-gray-700">{lr.freight}</td>
+                      <td className="p-2 text-gray-700">{lr.freightBy}</td>
+                      <td className="p-2 text-gray-700">{lr.subTotal}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="flex justify-end mt-4 space-x-2">
+              <button
+                onClick={addSelectedLrs}
+                className="px-4 py-1.5 bg-blue-600 text-white text-[12px] font-medium rounded-md shadow-sm hover:bg-blue-700 transition-all duration-200"
+              >
+                Add Selected
+              </button>
+              <button
+                onClick={() => setShowLrModal(false)}
+                className="px-4 py-1.5 bg-gray-500 text-white text-[12px] font-medium rounded-md shadow-sm hover:bg-gray-600 transition-all duration-200"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
-export default MemoReceiveAddWindow;
+export default DeliveryAddWindow;

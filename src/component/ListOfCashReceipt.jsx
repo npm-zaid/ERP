@@ -126,7 +126,7 @@ const ListOfCashReceipt = () => {
       columns={columns}
       initialData={initialData}
       numericFields={numericFields}
-     
+     componentType='cashReceipt'
       showAdd={true}
       showEdit={true}
       showView={true}

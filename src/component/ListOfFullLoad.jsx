@@ -253,7 +253,7 @@ const ListOfFullLoad = () => {
         numericFields={numericFields}
         fieldConfig={fieldConfig}
         windowConfig={windowConfig}
-        componentType="fullload"
+        componentType="fullLoad"
         showAdd={true}
         showEdit={true}
         showView={true}

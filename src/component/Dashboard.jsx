@@ -12,9 +12,11 @@ import PendingDelivery from './PendingDelivery'
 
 const Dashboard = () => {
   return (
+
     <div className='w-full min-h-screen'>
-      {/* 1st section */}
-    <div className="grid  grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+
+        {/* 1st section */}
+       <div className="grid  grid-cols-1 md:grid-cols-4 gap-4 mb-6">
           {[
             {
               label: 'Receivable',
@@ -129,9 +131,9 @@ const Dashboard = () => {
          {/* 5th section */}
          <div className='flex sm:flex-row flex-col gap-5 w-full my-5'>
           <div className='sm:w-1/2 w-full '><BillReminder/></div>
-          <div className='sm:w-1/2 w-full '><PendingDelivery/></div>
-         
+          <div className='sm:w-1/2 w-full '><PendingDelivery/></div>   
         </div>
+
    </div>
   )
 }

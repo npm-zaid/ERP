@@ -96,7 +96,7 @@ const ListOfDelivery = () => {
     {
       selected: false,
       audited: false,
-      date: '10/04/2025',
+      date: '10/04 evidenziato/2025',
       deliveryNo: 'DEL010',
       type: 'Express',
       consignee: 'YZA Ltd',
@@ -116,7 +116,7 @@ const ListOfDelivery = () => {
     { label: 'From Branch', field: 'fromBranch' },
   ];
 
-  const numericFields = [];
+  const numericFields = ['advance', 'advance2', 'balance', 'article', 'weight', 'rate', 'amount', 'preRate', 'totalArticle', 'totalWeight', 'hamali', 'serviceCharge', 'discountKasar', 'deliveryFreight'];
 
   const fieldConfig = {
     type: { options: ['Standard', 'Express'] },
@@ -164,9 +164,13 @@ const ListOfDelivery = () => {
     initialState: {
       selected: false,
       audited: false,
-      date: new Date().toISOString().split('T')[0],
+      date: new Date().toLocaleDateString('en-GB').split('/').join('/'),
       deliveryNo: '',
+      type: '',
+      consignee: '',
       lrNo: '',
+      lrRows: [],
+      fromBranch: '',
       party: '',
       partyAddress: '',
       hireAccount: '',
@@ -200,40 +204,73 @@ const ListOfDelivery = () => {
       labour: '',
       deliveryAt: '',
       note: '',
-      type: '',
     },
     fieldMapping: (entry) => ({
-      date: entry.date,
-      deliveryNo: entry.deliveryNo,
-      type: entry.type,
-      consignee: entry.consignee,
-      lrNo: entry.lrNo,
-      fromBranch: entry.fromBranch,
+      selected: entry.selected || false,
+      audited: entry.audited || false,
+      date: entry.date || '',
+      deliveryNo: entry.deliveryNo || '',
+      type: entry.type || '',
+      consignee: entry.consignee || '',
+      lrNo: entry.lrRows?.length > 0 ? entry.lrRows[0].lrNo : entry.lrNo || '',
+      lrRows: entry.lrRows || [],
+      fromBranch: entry.fromBranch || '',
+      party: entry.party || '',
+      partyAddress: entry.partyAddress || '',
+      hireAccount: entry.hireAccount || '',
+      hire: entry.hire || '',
+      cashBank: entry.cashBank || '',
+      advance: parseFloat(entry.advance) || 0,
+      cashBank2: entry.cashBank2 || '',
+      advance2: parseFloat(entry.advance2) || 0,
+      balance: parseFloat(entry.balance) || 0,
+      consigner: entry.consigner || '',
+      consignee: entry.consignee || '',
+      consignerGSTNO: entry.consignerGSTNO || '',
+      consigneeGSTNO: entry.consigneeGSTNO || '',
+      pack: entry.pack || '',
+      description: entry.description || '',
+      article: parseInt(entry.article) || 0,
+      weight: parseFloat(entry.weight) || 0,
+      rate: parseFloat(entry.rate) || 0,
+      freightOn: entry.freightOn || '',
+      amount: parseFloat(entry.amount) || 0,
+      preRate: parseFloat(entry.preRate) || 0,
+      totalArticle: parseInt(entry.totalArticle) || 0,
+      totalWeight: parseFloat(entry.totalWeight) || 0,
+      hamali: parseFloat(entry.hamali) || 0,
+      serviceCharge: parseFloat(entry.serviceCharge) || 0,
+      discountKasar: parseFloat(entry.discountKasar) || 0,
+      deliveryFreight: parseFloat(entry.deliveryFreight) || 0,
+      deliveryType: entry.deliveryType || '',
+      cashType: entry.cashType || '',
+      account: entry.account || '',
+      labour: entry.labour || '',
+      deliveryAt: entry.deliveryAt || '',
+      note: entry.note || '',
     }),
   };
 
   return (
-    
-      <TableLayout
-        title="List of Delivery"
-        columns={columns}
-        initialData={initialData}
-        numericFields={numericFields}
-        fieldConfig={fieldConfig}
-        windowConfig={windowConfig}
-        componentType="delivery"
-        showAdd={true}
-        showEdit={true}
-        showView={true}
-        showDelete={true}
-        showRefresh={true}
-        showPrint={true}
-        showAudit={true}
-        showField={true}
-        showExportExcel={true}
-        showExportPDF={true}
-      />
-    
+    <TableLayout
+      title="List of Delivery"
+      columns={columns}
+      initialData={initialData}
+      numericFields={numericFields}
+      fieldConfig={fieldConfig}
+      windowConfig={windowConfig}
+      componentType="delivery"
+      showAdd={true}
+      showEdit={true}
+      showView={true}
+      showDelete={true}
+      showRefresh={true}
+      showPrint={true}
+      showAudit={true}
+      showField={true}
+      showExportExcel={true}
+      showExportPDF={true}
+    />
   );
 };
 

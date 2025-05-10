@@ -479,8 +479,6 @@ const ListOfMemo = () => {
 
   const numericFields = ['article', 'toPay', 'paid', 'memoFreight', 'totalArticle', 'totalAcWeight', 'totalWeight', 'totalFreight'];
 
-
-
   const windowConfig = {
     initialState: {
       id: '',
@@ -488,7 +486,7 @@ const ListOfMemo = () => {
       audited: false,
       date: new Date().toLocaleDateString('en-GB').split('/').join('/'),
       memoNo: '',
-      toBranch: '',
+      toBranch: 'agra',
       vehicle: '',
       driver: '',
       agent: '',
@@ -500,7 +498,7 @@ const ListOfMemo = () => {
       article: 0,
       freightBy: '',
       fromCity: '',
-      toCity: '',
+      toCity: 'agra',
       toPay: 0,
       paid: 0,
       narration: '',
@@ -510,8 +508,8 @@ const ListOfMemo = () => {
           centerName: '',
           lrNo: '',
           date: '',
-          packaging: '',
-          description: '',
+          packaging: 'bages',
+          description: 'hello',
           article: 0,
           freightBy: '',
           fromCity: '',
@@ -533,41 +531,45 @@ const ListOfMemo = () => {
       vehicleNo: '',
       branch: '',
     },
-    fieldMapping: (entry) => ({
-      id: entry.id || '',
-      selected: entry.selected || false,
-      audited: entry.audited || false,
-      date: entry.date || '',
-      memoNo: entry.memoNo || '',
-      toBranch: entry.toBranch || '',
-      vehicle: entry.vehicle || '',
-      driver: entry.driver || '',
-      agent: entry.agent || '',
-      hire: entry.hire || '',
-      cashBank: entry.cashBank || '',
-      center: entry.center || '',
-      packaging: entry.packaging || '',
-      description: entry.description || '',
-      article: parseInt(entry.article) || 0,
-      freightBy: entry.freightBy || '',
-      fromCity: entry.fromCity || '',
-      toCity: entry.toCity || '',
-      toPay: parseFloat(entry.toPay) || 0,
-      paid: parseFloat(entry.paid) || 0,
-      narration: entry.narration || '',
-      memoFreight: parseFloat(entry.memoFreight) || 0,
-      lrRows: entry.lrRows || [],
-      totalArticle: parseInt(entry.totalArticle) || 0,
-      totalAcWeight: parseFloat(entry.totalAcWeight) || 0,
-      totalWeight: parseFloat(entry.totalWeight) || 0,
-      totalFreight: parseFloat(entry.totalFreight) || 0,
-      city: entry.city || '',
-      balance: parseFloat(entry.balance) || 0,
-      paymentType: entry.paymentType || '',
-      advanced: parseFloat(entry.advanced) || 0,
-      vehicleNo: entry.vehicleNo || '',
-      branch: entry.branch || '',
-    }),
+    fieldMapping: (entry) => {
+      // Extract the first lrRow if it exists, otherwise use empty defaults
+      const firstLrRow = entry.lrRows && entry.lrRows.length > 0 ? entry.lrRows[0] : {};
+      return {
+        id: entry.id || '',
+        selected: entry.selected || false,
+        audited: entry.audited || false,
+        date: entry.date || '',
+        memoNo: entry.memoNo || '',
+        toBranch: entry.toBranch || entry.branch || '',
+        vehicle: entry.vehicle || entry.vehicleNo || '',
+        driver: entry.driver || '',
+        agent: entry.agent || '',
+        hire: entry.hire || 'zaid',
+        cashBank: entry.cashBank || entry.paymentType || '',
+        center: firstLrRow.centerName || entry.center || '',
+        packaging: firstLrRow.packaging || entry.packaging || '',
+        description: firstLrRow.description || entry.description || '',
+        article: parseInt(firstLrRow.article) || parseInt(entry.totalArticle) || 0,
+        freightBy: firstLrRow.freightBy || entry.freightBy || '',
+        fromCity: firstLrRow.fromCity || entry.fromCity || '',
+        toCity: firstLrRow.toCity || entry.toCity || '',
+        toPay: parseFloat(entry.toPay) || 0,
+        paid: parseFloat(entry.paid) || 0,
+        narration: entry.narration || '',
+        memoFreight: parseFloat(entry.memoFreight) || parseFloat(entry.totalFreight) || 0,
+        lrRows: entry.lrRows || [],
+        totalArticle: parseInt(entry.totalArticle) || 0,
+        totalAcWeight: parseFloat(entry.totalAcWeight) || 0,
+        totalWeight: parseFloat(entry.totalWeight) || 0,
+        totalFreight: parseFloat(entry.totalFreight) || 0,
+        city: entry.city || '',
+        balance: parseFloat(entry.balance) || 0,
+        paymentType: entry.paymentType || '',
+        advanced: parseFloat(entry.advanced) || 0,
+        vehicleNo: entry.vehicleNo || '',
+        branch: entry.branch || '',
+      };
+    },
   };
 
   return (
@@ -576,7 +578,6 @@ const ListOfMemo = () => {
       columns={columns}
       initialData={initialData}
       numericFields={numericFields}
-     
       windowConfig={windowConfig}
       componentType="memo"
       showAdd={true}

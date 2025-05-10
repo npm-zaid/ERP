@@ -1,6 +1,7 @@
 import React from 'react';
 import TableLayout from './TableLayout';
 
+
 const ListOfSalesInvoice = () => {
   const initialData = [
     {
@@ -15,6 +16,14 @@ const ListOfSalesInvoice = () => {
       salesAccount: 'Sales - General',
       totalAmount: 15000.00,
       createdBy: 'John Doe',
+      totalArticle: 10,
+      totalWeight: 500,
+      taxableAmount: 1100,
+      itemFreight: 1155,
+      expenseName: 'Service Charge',
+      expenseAccount: 'Expense - Service',
+      expenseRate: 100,
+      expenseAmount: 100,
     },
     {
       selected: false,
@@ -28,6 +37,14 @@ const ListOfSalesInvoice = () => {
       salesAccount: 'Sales - Retail',
       totalAmount: 25000.00,
       createdBy: 'Jane Smith',
+      totalArticle: 15,
+      totalWeight: 750,
+      taxableAmount: 1205,
+      itemFreight: 1265.25,
+      expenseName: 'Insurance',
+      expenseAccount: 'Expense - Insurance',
+      expenseRate: 50,
+      expenseAmount: 50,
     },
     {
       selected: false,
@@ -41,6 +58,14 @@ const ListOfSalesInvoice = () => {
       salesAccount: 'Sales - Wholesale',
       totalAmount: 18000.50,
       createdBy: 'Mike Johnson',
+      totalArticle: 20,
+      totalWeight: 1000,
+      taxableAmount: 1920,
+      itemFreight: 2016,
+      expenseName: 'Packaging Fee',
+      expenseAccount: 'Expense - General',
+      expenseRate: 75,
+      expenseAmount: 75,
     },
     {
       selected: false,
@@ -54,6 +79,14 @@ const ListOfSalesInvoice = () => {
       salesAccount: 'Sales - Services',
       totalAmount: 32000.75,
       createdBy: 'Sarah Williams',
+      totalArticle: 12,
+      totalWeight: 600,
+      taxableAmount: 1300,
+      itemFreight: 1365,
+      expenseName: 'Other',
+      expenseAccount: 'Expense - General',
+      expenseRate: 200,
+      expenseAmount: 200,
     },
     {
       selected: false,
@@ -67,6 +100,14 @@ const ListOfSalesInvoice = () => {
       salesAccount: 'Sales - General',
       totalAmount: 12500.00,
       createdBy: 'David Brown',
+      totalArticle: 8,
+      totalWeight: 400,
+      taxableAmount: 900,
+      itemFreight: 945,
+      expenseName: 'Service Charge',
+      expenseAccount: 'Expense - Service',
+      expenseRate: 150,
+      expenseAmount: 150,
     },
     {
       selected: false,
@@ -80,6 +121,14 @@ const ListOfSalesInvoice = () => {
       salesAccount: 'Sales - Retail',
       totalAmount: 27500.25,
       createdBy: 'Emily Davis',
+      totalArticle: 18,
+      totalWeight: 900,
+      taxableAmount: 1600,
+      itemFreight: 1680,
+      expenseName: 'Insurance',
+      expenseAccount: 'Expense - Insurance',
+      expenseRate: 120,
+      expenseAmount: 120,
     },
     {
       selected: false,
@@ -93,6 +142,14 @@ const ListOfSalesInvoice = () => {
       salesAccount: 'Sales - Wholesale',
       totalAmount: 22000.00,
       createdBy: 'Robert Wilson',
+      totalArticle: 14,
+      totalWeight: 700,
+      taxableAmount: 1400,
+      itemFreight: 1470,
+      expenseName: 'Packaging Fee',
+      expenseAccount: 'Expense - General',
+      expenseRate: 90,
+      expenseAmount: 90,
     },
     {
       selected: false,
@@ -106,6 +163,14 @@ const ListOfSalesInvoice = () => {
       salesAccount: 'Sales - Services',
       totalAmount: 19500.50,
       createdBy: 'Lisa Taylor',
+      totalArticle: 16,
+      totalWeight: 800,
+      taxableAmount: 1500,
+      itemFreight: 1575,
+      expenseName: 'Other',
+      expenseAccount: 'Expense - General',
+      expenseRate: 180,
+      expenseAmount: 180,
     },
     {
       selected: false,
@@ -119,6 +184,14 @@ const ListOfSalesInvoice = () => {
       salesAccount: 'Sales - General',
       totalAmount: 28500.75,
       createdBy: 'James Anderson',
+      totalArticle: 22,
+      totalWeight: 1100,
+      taxableAmount: 2000,
+      itemFreight: 2100,
+      expenseName: 'Service Charge',
+      expenseAccount: 'Expense - Service',
+      expenseRate: 110,
+      expenseAmount: 110,
     },
     {
       selected: false,
@@ -132,6 +205,14 @@ const ListOfSalesInvoice = () => {
       salesAccount: 'Sales - Retail',
       totalAmount: 16500.00,
       createdBy: 'Jennifer Martinez',
+      totalArticle: 9,
+      totalWeight: 450,
+      taxableAmount: 1000,
+      itemFreight: 1050,
+      expenseName: 'Insurance',
+      expenseAccount: 'Expense - Insurance',
+      expenseRate: 130,
+      expenseAmount: 130,
     },
   ];
 
@@ -149,7 +230,27 @@ const ListOfSalesInvoice = () => {
     { label: 'Created By', field: 'createdBy' },
   ];
 
-  const numericFields = ['totalAmount'];
+  const numericFields = [
+    'totalAmount',
+    'article',
+    'weight',
+    'rate',
+    'lrFreight',
+    'bc',
+    'hamali',
+    'otherCharge',
+    'subTotal',
+    'gst',
+    'totalFreight',
+    'totalArticle',
+    'totalWeight',
+    'amount',
+    'balance',
+    'taxableAmount',
+    'itemFreight',
+    'expenseRate',
+    'expenseAmount',
+  ];
 
   const fieldConfig = {
     cashDebit: { options: ['Cash', 'Debit', 'Credit'] },
@@ -158,13 +259,33 @@ const ListOfSalesInvoice = () => {
     salesAccount: {
       options: ['Sales - General', 'Sales - Retail', 'Sales - Wholesale', 'Sales - Services'],
     },
+    fromBranch: {
+      options: [
+        'MUMBAI',
+        'AHMEDABAD',
+        'DELHI',
+        'PUNE',
+        'BANGALORE',
+        'HYDERABAD',
+        'KOLKATA',
+        'CHENNAI',
+        'SURAT',
+        'NAGPUR',
+      ],
+    },
+    expenseName: {
+      options: ['Service Charge', 'Packaging Fee', 'Insurance', 'Other'],
+    },
+    expenseAccount: {
+      options: ['Expense - General', 'Expense - Service', 'Expense - Insurance'],
+    },
   };
 
   const windowConfig = {
     initialState: {
       selected: false,
       audited: false,
-      date: new Date().toISOString().split('T')[0],
+      date: new Date().toLocaleDateString('en-GB').split('/').join('/'),
       cashDebit: 'Debit',
       no: '',
       taxType: 'GST',
@@ -185,6 +306,7 @@ const ListOfSalesInvoice = () => {
       truckNo: '',
       fromCity: '',
       toCity: '',
+      fromBranch: '',
       hsnSac: '',
       article: 0,
       weight: 0,
@@ -193,43 +315,92 @@ const ListOfSalesInvoice = () => {
       narration: '',
       expenseName: '',
       expenseAccount: '',
+      expenseRate: 0,
+      expenseAmount: 0,
       rate: 0,
       amount: 0,
+      totalArticle: 0,
+      totalWeight: 0,
+      lrFreight: 0,
+      bc: 0,
+      hamali: 0,
+      otherCharge: 0,
+      subTotal: 0,
+      gst: 0,
+      totalFreight: 0,
+      rows: [],
     },
     fieldMapping: (entry) => ({
-      date: entry.date,
-      cashDebit: entry.cashDebit,
-      no: entry.no,
-      taxType: entry.taxType,
-      accountName: entry.accountName,
-      invtype: entry.invtype,
-      salesAccount: entry.salesAccount,
+      selected: entry.selected || false,
+      audited: entry.audited || false,
+      date: entry.date || '',
+      cashDebit: entry.cashDebit || '',
+      no: entry.no || '',
+      taxType: entry.taxType || '',
+      accountName: entry.accountName || '',
+      invtype: entry.invtype || '',
+      salesAccount: entry.salesAccount || '',
       totalAmount: parseFloat(entry.totalAmount) || 0,
-      createdBy: entry.createdBy,
+      createdBy: entry.createdBy || '',
+      billType: entry.billType || '',
+      bookCode: entry.bookCode || '',
+      balance: parseFloat(entry.balance) || 0,
+      centerName: entry.centerName || '',
+      lrNo: entry.lrNo || '',
+      lrDate: entry.lrDate || '',
+      delDate: entry.delDate || '',
+      consigner: entry.consigner || '',
+      consignee: entry.consignee || '',
+      truckNo: entry.truckNo || '',
+      fromCity: entry.fromCity || '',
+      toCity: entry.toCity || '',
+      fromBranch: entry.fromBranch || '',
+      hsnSac: entry.hsnSac || '',
+      article: parseInt(entry.article) || 0,
+      weight: parseFloat(entry.weight) || 0,
+      taxableAmount: parseFloat(entry.taxableAmount) || 0,
+      itemFreight: parseFloat(entry.itemFreight) || 0,
+      narration: entry.narration || '',
+      expenseName: entry.expenseName || '',
+      expenseAccount: entry.expenseAccount || '',
+      expenseRate: parseFloat(entry.expenseRate) || 0,
+      expenseAmount: parseFloat(entry.expenseAmount) || 0,
+      rate: parseFloat(entry.rate) || 0,
+      amount: parseFloat(entry.amount) || 0,
+      totalArticle: parseInt(entry.totalArticle) || 0,
+      totalWeight: parseFloat(entry.totalWeight) || 0,
+      lrFreight: parseFloat(entry.lrFreight) || 0,
+      bc: parseFloat(entry.bc) || 0,
+      hamali: parseFloat(entry.hamali) || 0,
+      otherCharge: parseFloat(entry.otherCharge) || 0,
+      subTotal: parseFloat(entry.subTotal) || 0,
+      gst: parseFloat(entry.gst) || 0,
+      totalFreight: parseFloat(entry.totalFreight) || 0,
+      rows: entry.rows || [],
     }),
   };
 
   return (
+    <TableLayout
+      title="List of Sales Invoice"
+      columns={columns}
+      initialData={initialData}
+      numericFields={numericFields}
+      fieldConfig={fieldConfig}
+      windowConfig={windowConfig}
+      componentType="salesInvoice"
+      showAdd={true}
+      showEdit={true}
+      showView={true}
+      showDelete={true}
+      showRefresh={true}
+      showPrint={true}
+      showAudit={true}
+      showField={true}
+      showExportExcel={true}
+      showExportPDF={true}
    
-      <TableLayout
-        title="List of Sales Invoice"
-        columns={columns}
-        initialData={initialData}
-        numericFields={numericFields}
-        fieldConfig={fieldConfig}
-        windowConfig={windowConfig}
-        componentType="salesInvoice"
-        showAdd={true}
-        showEdit={true}
-        showView={true}
-        showDelete={true}
-        showRefresh={true}
-        showPrint={true}
-        showAudit={true}
-        showField={true}
-        showExportExcel={true}
-        showExportPDF={true}
-      />
+    />
   );
 };
 
